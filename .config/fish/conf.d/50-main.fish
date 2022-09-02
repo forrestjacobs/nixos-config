@@ -14,14 +14,20 @@ end
 fish_add_path -g "$HOME"/bin
 
 # bat
-abbr -ag l bat -p
-set -xg BAT_STYLE numbers,changes
-set -xg BAT_THEME ansi
+if type bat > /dev/null
+  abbr -ag l bat -p
+  set -xg BAT_STYLE numbers,changes
+  set -xg BAT_THEME ansi
+else
+  abbr -ag l less
+end
 
 # exa
-set -xg TIME_STYLE iso
-abbr -ag ll exa -aagl
-abbr -ag lll exa -glTL2fu
+if type exa > /dev/null
+  set -xg TIME_STYLE iso
+  abbr -ag ll exa -aagl
+  abbr -ag lll exa -glTL2fu
+end
 
 # less
 set -xg PAGER less
@@ -32,8 +38,13 @@ set -xg LESSHISTFILE "$XDG_CACHE_HOME"/less-hist
 set -xg MANOPT --no-justification
 
 # nvim
-set -xg EDITOR nvim
-abbr -ag v nvim
+if type nvim > /dev/null
+  set -xg EDITOR nvim
+  abbr -ag v nvim
+else
+  set -xg EDITOR vim
+  abbr -ag v vim
+end
 
 # sudo
 abbr -a -g sv sudoedit
@@ -41,4 +52,6 @@ abbr -a -g sv sudoedit
 # --- stuff below should stay at the end
 
 # direnv
-direnv hook fish | source
+if type direnv > /dev/null
+  direnv hook fish | source
+end
