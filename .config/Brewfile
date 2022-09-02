@@ -1,0 +1,21 @@
+# fish
+brew "bat"
+brew "direnv"
+brew "exa"
+brew "fish"
+
+# git
+brew "git-delta"
+brew "patchutils"
+
+# nvim
+brew "neovim"
+
+# utils
+brew "coreutils"
+brew "gnu-sed"
+brew "grep"
+brew "htop"
+brew "jq"
+brew "mosh"
+brew "ncdu"

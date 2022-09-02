@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+# dependencies
+
+if command -v brew &> /dev/null; then
+  if ! brew bundle --file ~/.config/Brewfile check > /dev/null; then
+    echo 'Warning: Not all dependencies are installed. Run:'
+    echo '  brew bundle --file ~/.config/Brewfile'
+    echo
+  fi
+else
+  echo 'Warning: Unable to test dependencies. For macos, install Homebrew at https://brew.sh and then run dotdoctor again.'
+  echo
+fi
+
 # fish
 
 if test $(basename "$SHELL") != "fish"; then

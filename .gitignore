@@ -2,6 +2,7 @@
 !/bin
 !/bin/*
 !/.config
+!/.config/Brewfile
 !/.config/fish
 !/.config/fish/conf.d
 !/.config/fish/conf.d/50-main.fish
