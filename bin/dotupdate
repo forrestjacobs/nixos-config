@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+pushd "${HOME}" > /dev/null
+git fetch
+git pull --ff-only
+popd > /dev/null
