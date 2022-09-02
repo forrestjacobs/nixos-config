@@ -26,7 +26,7 @@ end
 if type exa > /dev/null
   set -xg TIME_STYLE iso
   abbr -ag ll exa -aagl
-  abbr -ag lll exa -glTL2fu
+  abbr -ag lll exa -glT --level=2
 end
 
 # less
