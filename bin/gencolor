@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Based on https://codepen.io/frantic1048/pen/LGGxZP
+
+if [[ -z $2 ]]; then
+  echo "usage: gencolor 'string' 0-255"
+  exit 1
+fi
+
+function cap() {
+  if [[ $1 -lt 0 ]]; then
+    echo 0
+  elif [[ $1 -gt 255 ]]; then
+    echo 255
+  else
+    echo "$1"
+  fi
+}
+
+function makeColor() {
+  # Rec. 709 luma coefficients https://en.wikipedia.org/wiki/Luma_%28video%29
+  m=$(( $1 - (54 * $2) / 255 - (182 * $3) / 255 - (18 * $4) / 255 ))
+  r=$(cap $(( $2 + m )))
+  g=$(cap $(( $3 + m )))
+  b=$(cap $(( $4 + m )))
+  printf '%02x%02x%02x\n' "$r" "$g" "$b"
+}
+
+function HCY709ToRGB() {
+  abs=$(( (($1 * 6) % 510) - 255 ))
+  if [[ $abs -lt 0 ]]; then
+    abs=$(( -abs ))
+  fi
+  x=$(( $2 * (255 - abs) / 255 ))
+
+  if [[ $1 -le 42 ]]; then
+    makeColor "$3" "$2" $x 0
+  elif [[ $1 -le 85 ]]; then
+    makeColor "$3" $x "$2" 0
+  elif [[ $1 -le 127 ]]; then
+    makeColor "$3" 0 "$2" $x
+  elif [[ $1 -le 170 ]]; then
+    makeColor "$3" 0 $x "$2"
+  elif [[ $1 -le 212 ]]; then
+    makeColor "$3" $x 0 "$2"
+  else
+    makeColor "$3" "$2" 0 $x
+  fi
+}
+
+hex=$(echo "$1" | md5sum)
+HCY709ToRGB $((0x${hex:0:2})) $(( $2 * 2 / 3 )) "$2"
