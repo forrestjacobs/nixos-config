@@ -5,3 +5,8 @@ if test $(basename "$SHELL") != "fish"; then
   echo '  chsh -s /path/to/fish'
   echo
 fi
+
+if test $(git config --global include.path) != '~/.config/git/main.inc'; then
+  echo 'Warning: Not sourcing git config. Run:'
+  echo "  git config --global include.path '~/.config/git/main.inc'"
+fi

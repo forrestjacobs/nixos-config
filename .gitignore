@@ -7,4 +7,6 @@
 !/.config/fish/conf.d/50-main.fish
 !/.config/fish/functions
 !/.config/fish/functions/fish_prompt.fish
+!/.config/git
+!/.config/git/main.inc
 !/.gitignore
