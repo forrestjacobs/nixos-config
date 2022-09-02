@@ -9,7 +9,7 @@ function fish_prompt
 
   echo -n -s \
     (set_color $fish_color_cwd) \
-    (string replace -ar '([^/]{2})[^/]*/' '$1/' (string replace -r '^'"$HOME"'($|/)' '~$1' $PWD)) \
+    (string replace -r '^'"$HOME"'($|/)' '~$1' "$PWD") \
     "$status_text" \
     (set_color normal) ' > '
 end
