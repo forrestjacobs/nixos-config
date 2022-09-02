@@ -9,4 +9,6 @@
 !/.config/fish/functions/fish_prompt.fish
 !/.config/git
 !/.config/git/main.inc
+!/.config/nvim
+!/.config/nvim/init.vim
 !/.gitignore

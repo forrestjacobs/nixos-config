@@ -31,6 +31,10 @@ set -xg LESSHISTFILE "$XDG_CACHE_HOME"/less-hist
 # man
 set -xg MANOPT --no-justification
 
+# nvim
+set -xg EDITOR nvim
+abbr -ag v nvim
+
 # sudo
 abbr -a -g sv sudoedit
 
