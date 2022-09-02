@@ -3,6 +3,13 @@ set -xg XDG_CONFIG_HOME "$HOME"/.config
 set -xg XDG_DATA_HOME "$HOME"/.local/share
 set -xg XDG_CACHE_HOME "$HOME"/.cache
 
+# homebrew
+if test -x /usr/local/bin/brew
+  /usr/local/bin/brew shellenv | source
+else if test -x /opt/homebrew/bin/brew
+  /opt/homebrew/bin/brew shellenv | source
+end
+
 # Custom
 set -xg DOTS_HOME "$XDG_CONFIG_HOME"/dots
 set -xg LOCAL_BIN_HOME "$HOME"/.local/bin
