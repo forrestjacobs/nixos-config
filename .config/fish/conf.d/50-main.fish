@@ -10,10 +10,8 @@ else if test -x /opt/homebrew/bin/brew
   /opt/homebrew/bin/brew shellenv | source
 end
 
-# Custom
-set -xg DOTS_HOME "$XDG_CONFIG_HOME"/dots
-set -xg LOCAL_BIN_HOME "$HOME"/.local/bin
-fish_add_path -g "$HOME"/.local/bin
+# Custom bin
+fish_add_path -g "$HOME"/bin
 
 # bat
 abbr -ag l bat -p
