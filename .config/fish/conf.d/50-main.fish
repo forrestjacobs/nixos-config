@@ -29,6 +29,9 @@ if type exa > /dev/null
   abbr -ag lll exa -glT --level=2
 end
 
+# fish
+set -g fish_greeting
+
 # less
 set -xg PAGER less
 set -xg LESS -iRFXMx4
