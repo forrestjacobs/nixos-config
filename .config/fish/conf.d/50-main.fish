@@ -10,24 +10,18 @@ else if test -x /opt/homebrew/bin/brew
   /opt/homebrew/bin/brew shellenv | source
 end
 
-# Custom bin
+# bin
 fish_add_path -g "$HOME"/bin
 
 # bat
-if type bat > /dev/null
-  abbr -ag l bat -p
-  set -xg BAT_STYLE numbers,changes
-  set -xg BAT_THEME ansi
-else
-  abbr -ag l less
-end
+abbr -ag l bat -p
+set -xg BAT_STYLE numbers,changes
+set -xg BAT_THEME ansi
 
 # exa
-if type exa > /dev/null
-  set -xg TIME_STYLE iso
-  abbr -ag ll exa -aagl
-  abbr -ag lll exa -glT --level=2
-end
+set -xg TIME_STYLE iso
+abbr -ag ll exa -aagl
+abbr -ag lll exa -glT --level=2
 
 # fish
 set -g fish_greeting
@@ -41,13 +35,8 @@ set -xg LESSHISTFILE "$XDG_CACHE_HOME"/less-hist
 set -xg MANOPT --no-justification
 
 # nvim
-if type nvim > /dev/null
-  set -xg EDITOR nvim
-  abbr -ag v nvim
-else
-  set -xg EDITOR vim
-  abbr -ag v vim
-end
+set -xg EDITOR nvim
+abbr -ag v nvim
 
 # sudo
 abbr -a -g sv sudoedit
