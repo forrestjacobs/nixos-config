@@ -12,7 +12,7 @@
 !/.config/git/ignore
 !/.config/git/main.inc
 !/.config/nvim
-!/.config/nvim/init.vim
+!/.config/nvim/init.lua
 !/.config/packages.nix
 !/.config/tmux
 !/.config/tmux/tmux.conf
