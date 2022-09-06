@@ -11,7 +11,7 @@ else if test -x /opt/homebrew/bin/brew
 end
 
 # bin
-fish_add_path -g "$HOME"/bin
+fish_add_path -g "$HOME"/.config/dots/bin
 
 # bat
 abbr -ag l bat -p
