@@ -11,8 +11,6 @@ if command -v brew &> /dev/null; then
 else
   echo 'Warning: Unable to test dependencies.'
   echo 'For MacOS, install Homebrew at https://brew.sh and then run dotdoctor again.'
-  echo 'For NixOS, concatenate users.users.<user>.packages with:'
-  echo '  (import /path/to/home/.config/dots/packages.nix args)'
   echo
 fi
 
@@ -21,8 +19,6 @@ fi
 if test "$(basename "$SHELL")" != "fish"; then
   echo 'Warning: Your shell is not fish. Add fish to /etc/shells and then:'
   echo '  chsh -s /path/to/fish'
-  echo 'or in NixOS, add this to your configuration:'
-  echo '  users.defaultUserShell = pkgs.fish;'
   echo
 fi
 
