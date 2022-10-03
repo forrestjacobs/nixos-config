@@ -44,6 +44,6 @@ abbr -a -g sv sudoedit
 # --- stuff below should stay at the end
 
 # direnv
-if type direnv > /dev/null
+if type -q direnv
   direnv hook fish | source
 end
