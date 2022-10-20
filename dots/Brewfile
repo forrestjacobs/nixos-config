@@ -8,8 +8,8 @@ brew "fish"
 brew "git-delta"
 brew "patchutils"
 
-# nvim
-brew "neovim"
+# helix
+brew "helix"
 
 # utils
 brew "coreutils"
