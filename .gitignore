@@ -9,6 +9,8 @@
 !/git
 !/git/config
 !/git/ignore
+!/helix
+!/helix/config.toml
 !/nvim
 !/nvim/init.lua
 !/tmux

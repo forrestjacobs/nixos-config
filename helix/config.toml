@@ -1,0 +1,7 @@
+theme = "base16_transparent"
+
+[editor]
+color-modes = true
+cursor-shape.insert = "bar"
+indent-guides.render = true
+line-number = "relative"
