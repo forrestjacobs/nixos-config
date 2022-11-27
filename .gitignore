@@ -11,8 +11,6 @@
 !/git/ignore
 !/helix
 !/helix/config.toml
-!/nvim
-!/nvim/init.lua
 !/tmux
 !/tmux/tmux.conf
 !/.gitignore
