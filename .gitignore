@@ -11,6 +11,8 @@
 !/git/ignore
 !/helix
 !/helix/config.toml
+!/kitty
+!/kitty/kitty.conf
 !/tmux
 !/tmux/tmux.conf
 !/.gitignore
