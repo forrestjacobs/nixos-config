@@ -14,7 +14,7 @@ function fish_prompt
 
   echo -n -s \
     (set_color $host_color) \
-    '@'"$hostname"' ' \
+    '@'(string match -r '[^.]*' "$hostname")' ' \
     (set_color $fish_color_cwd) \
     (string replace -r '^'"$HOME"'($|/)' '~$1' "$PWD") \
     "$status_text" \
