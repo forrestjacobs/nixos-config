@@ -2,6 +2,10 @@
 
 pushd "${HOME}/.config" > /dev/null
 git fetch
+if test "$(git branch --show-current)" != "main"; then
+  echo "Switch to main branch, then run dotupdate again"
+  exit 1
+fi
 git pull --ff-only
 popd > /dev/null
 dotdoctor
