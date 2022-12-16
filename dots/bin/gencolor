@@ -7,46 +7,22 @@ if [[ -z $2 ]]; then
   exit 1
 fi
 
-function cap() {
-  if [[ $1 -lt 0 ]]; then
-    echo 0
-  elif [[ $1 -gt 255 ]]; then
-    echo 255
-  else
-    echo "$1"
-  fi
-}
-
-function makeColor() {
-  # Rec. 709 luma coefficients https://en.wikipedia.org/wiki/Luma_%28video%29
-  m=$(( $1 - (54 * $2) / 255 - (182 * $3) / 255 - (18 * $4) / 255 ))
-  r=$(cap $(( $2 + m )))
-  g=$(cap $(( $3 + m )))
-  b=$(cap $(( $4 + m )))
-  printf '%02x%02x%02x\n' "$r" "$g" "$b"
-}
-
-function HCY709ToRGB() {
-  abs=$(( (($1 * 6) % 510) - 255 ))
-  if [[ $abs -lt 0 ]]; then
-    abs=$(( -abs ))
-  fi
-  x=$(( $2 * (255 - abs) / 255 ))
-
-  if [[ $1 -le 42 ]]; then
-    makeColor "$3" "$2" $x 0
-  elif [[ $1 -le 85 ]]; then
-    makeColor "$3" $x "$2" 0
-  elif [[ $1 -le 127 ]]; then
-    makeColor "$3" 0 "$2" $x
-  elif [[ $1 -le 170 ]]; then
-    makeColor "$3" 0 $x "$2"
-  elif [[ $1 -le 212 ]]; then
-    makeColor "$3" $x 0 "$2"
-  else
-    makeColor "$3" "$2" 0 $x
-  fi
-}
-
 hex=$(echo "$1" | md5sum)
-HCY709ToRGB $((0x${hex:0:2})) $(( $2 * 2 / 3 )) "$2"
+((
+  hue = 0x${hex:0:2},
+  chroma = $2 * 2 / 3,
+  x = ((hue * 6) % 510) - 255,
+  x = chroma * ( x < 0 ? 255 + x : 255 - x ) / 255,
+  r = hue < 43 ? chroma : hue < 86 ? x : hue < 171 ? 0 : hue < 213 ? x : chroma,
+  g = hue < 43 ? x : hue < 128 ? chroma : hue < 171 ? x : 0,
+  b = hue < 86 ? 0 : hue < 128 ? x : hue < 213 ? chroma : x,
+  m = $2 - (54 * r) / 255 - (182 * g) / 255 - (18 * b) / 255,
+  r += m,
+  g += m,
+  b += m
+))
+
+printf '%02x%02x%02x\n' \
+  "$(( r < 0 ? 0 : r > 255 ? 255 : r ))" \
+  "$(( g < 0 ? 0 : g > 255 ? 255 : g ))" \
+  "$(( b < 0 ? 0 : b > 255 ? 255 : b ))"
