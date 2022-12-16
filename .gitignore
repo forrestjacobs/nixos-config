@@ -5,6 +5,7 @@
 !/fish/conf.d
 !/fish/conf.d/50-main.fish
 !/fish/functions
+!/fish/functions/fish_greeting.fish
 !/fish/functions/fish_prompt.fish
 !/git
 !/git/config
