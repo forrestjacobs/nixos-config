@@ -7,14 +7,13 @@ function fish_prompt
     set status_text ' '(__fish_print_pipestatus '[' ']' '|' (set_color $fish_color_status) (set_color $fish_color_error) $last_pipestatus)
   end
 
-  set -l host_color "$fish_color_host"
-  if test -n "$TMUX" -o -n "$SSH_CLIENT"
-    set host_color "$fish_color_host_remote"
+  if ! set -q cached_host_color
+    set -g cached_host_color (gencolor (string match -r '[a-z]*' $hostname) 192)
   end
 
   echo -n -s \
-    (set_color $host_color) \
-    '@'(string match -r '[^.]*' "$hostname")' ' \
+    (set_color $cached_host_color) \
+    (string sub -l 4 $hostname) ' ' \
     (set_color $fish_color_cwd) \
     (string replace -r '^'"$HOME"'($|/)' '~$1' "$PWD") \
     "$status_text" \
