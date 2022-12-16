@@ -8,10 +8,17 @@ if command -v brew &> /dev/null; then
     echo '  brew bundle --file ~/.config/dots/Brewfile'
     echo
   fi
-else
-  echo 'Warning: Unable to test dependencies.'
-  echo 'For MacOS, install Homebrew at https://brew.sh and then run dotdoctor again.'
-  echo
+fi
+
+# update script
+
+if command -v launchctl &> /dev/null; then
+  if ! launchctl list | grep -F 'co.t19.update-dots.agent' > /dev/null; then
+    echo 'Warning: update-dots service not loaded or enabled. Run:'
+    echo '  ln -s ~/.config/LaunchAgents/co.t19.update-dots.agent.plist ~/Library/LaunchAgents/co.t19.update-dots.agent.plist'
+    echo '  launchctl load ~/Library/LaunchAgents/co.t19.update-dots.agent.plist'
+    echo "  launchctl enable user/$(id -u)/co.t19.update-dots.agent"
+  fi
 fi
 
 # fish

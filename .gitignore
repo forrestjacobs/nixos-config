@@ -14,6 +14,8 @@
 !/helix/config.toml
 !/kitty
 !/kitty/kitty.conf
+!/LaunchAgents
+!/LaunchAgents/co.t19.*
 !/tmux
 !/tmux/tmux.conf
 !/.gitignore
