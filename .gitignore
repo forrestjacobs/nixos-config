@@ -8,8 +8,8 @@
 !/fish/functions/fish_greeting.fish
 !/fish/functions/fish_prompt.fish
 !/git
-!/git/config
 !/git/ignore
+!/git/main.inc
 !/helix
 !/helix/config.toml
 !/kitty

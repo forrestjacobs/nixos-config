@@ -1,6 +1,3 @@
-[user]
-	name = Forrest Jacobs
-	email = forrestjacobs@gmail.com
 [core]
 	pager = delta
 [interactive]
@@ -12,5 +9,3 @@
 [delta]
 	navigate = true
 	line-numbers = true
-[include]
-	path = local.gitconfig

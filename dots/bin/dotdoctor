@@ -28,3 +28,23 @@ if test "$(basename "$SHELL")" != "fish"; then
   echo '  chsh -s /path/to/fish'
   echo
 fi
+
+# git
+
+if test "$(git config --global include.path)" != '~/.config/git/main.inc'; then
+  echo 'Warning: Not sourcing git config. Run:'
+  echo "  git config --global include.path '~/.config/git/main.inc'"
+  echo
+fi
+
+if ! git config --global user.name > /dev/null; then
+  echo 'Warning: Git name not set. Run:'
+  echo "  git config --global user.name 'Forrest Jacobs'"
+  echo
+fi
+
+if ! git config --global user.email > /dev/null; then
+  echo 'Warning: Git email not set. Run:'
+  echo "  git config --global user.email 'forrestjacobs@gmail.com'"
+  echo
+fi
