@@ -26,13 +26,8 @@ abbr -ag lll exa -glT --level=2
 # fish
 set -g fish_greeting
 
-# helix/nvim
-if type -q hx
-  set -xg EDITOR hx
-else if type -q nvim
-  set -xg EDITOR nvim
-end
-abbr -ag v $EDITOR
+# helix
+set -xg EDITOR hx
 
 # less
 set -xg PAGER less
@@ -43,7 +38,7 @@ set -xg LESSHISTFILE "$XDG_CACHE_HOME"/less-hist
 set -xg MANOPT --no-justification
 
 # sudo
-abbr -a -g sv sudoedit
+abbr -a -g se sudoedit
 
 # --- stuff below should stay at the end
 
