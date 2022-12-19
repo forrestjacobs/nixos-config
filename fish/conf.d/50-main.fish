@@ -14,14 +14,11 @@ end
 fish_add_path -g "$HOME"/.config/dots/bin
 
 # bat
-abbr -ag l bat -p
 set -xg BAT_STYLE numbers,changes
 set -xg BAT_THEME ansi
 
 # exa
 set -xg TIME_STYLE iso
-abbr -ag ll exa -aagl
-abbr -ag lll exa -glT --level=2
 
 # fish
 set -g fish_greeting
