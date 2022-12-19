@@ -7,6 +7,7 @@
 !/fish/functions
 !/fish/functions/fish_greeting.fish
 !/fish/functions/fish_prompt.fish
+!/fish/functions/remote.fish
 !/git
 !/git/ignore
 !/git/main.inc
