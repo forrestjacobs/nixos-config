@@ -17,5 +17,5 @@ function fish_prompt
     (set_color $fish_color_cwd) \
     (string replace -r '^'"$HOME"'($|/)' '~$1' "$PWD") \
     "$status_text" \
-    (set_color normal) ' > '
+    (set_color normal) ' 🐠 '
 end
