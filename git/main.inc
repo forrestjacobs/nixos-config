@@ -1,5 +1,7 @@
 [core]
 	pager = delta
+[init]
+	defaultBranch = main
 [interactive]
 	diffFilter = delta --color-only
 [merge]
