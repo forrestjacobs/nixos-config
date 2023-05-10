@@ -34,9 +34,16 @@ set -xg MANOPT --no-justification
 # sudo
 abbr -a -g se sudoedit
 
-# --- stuff below should stay at the end
+# Open tmux when connecting via mosh
+if status is-interactive
+  and set -q SSH_CONNECTION
+  and not set -q TMUX
+  and ps -p (ps -p $fish_pid -o ppid= | string trim) -o comm= | grep mosh-server
 
-# direnv
+ exec term
+end
+
+# direnv -- should stay at end
 if type -q direnv
   direnv hook fish | source
 end
