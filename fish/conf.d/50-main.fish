@@ -40,7 +40,7 @@ if status is-interactive
   and not set -q TMUX
   and ps -p (ps -p $fish_pid -o ppid= | string trim) -o comm= | grep mosh-server
 
- exec term
+  exec term
 end
 
 # direnv -- should stay at end
