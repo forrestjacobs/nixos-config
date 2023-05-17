@@ -12,6 +12,10 @@ brew "patchutils"
 # helix
 brew "helix"
 
+# kitty
+tap "homebrew/cask-fonts"
+cask "font-sarasa-gothic"
+
 # utils
 brew "coreutils"
 brew "gnu-sed"
