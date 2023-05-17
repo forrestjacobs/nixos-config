@@ -45,6 +45,8 @@ end
 
 # starship
 if type -q starship
+  # suppress warning about git status timing out
+  set -xg STARSHIP_LOG error
   function starship_transient_prompt_func
     starship module directory
     starship module character
