@@ -15,6 +15,7 @@ brew "helix"
 # kitty
 tap "homebrew/cask-fonts"
 cask "font-sarasa-gothic"
+cask "kitty"
 
 # utils
 brew "coreutils"
