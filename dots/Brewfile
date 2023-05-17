@@ -3,6 +3,7 @@ brew "bat"
 brew "direnv"
 brew "exa"
 brew "fish"
+brew "starship"
 
 # git
 brew "git-delta"

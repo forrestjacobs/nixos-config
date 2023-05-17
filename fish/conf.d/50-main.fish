@@ -43,6 +43,16 @@ if status is-interactive
   exec term
 end
 
+# starship
+if type -q starship
+  function starship_transient_prompt_func
+    starship module directory
+    starship module character
+  end
+  starship init fish | source
+  enable_transience
+end
+
 # direnv -- should stay at end
 if type -q direnv
   direnv hook fish | source

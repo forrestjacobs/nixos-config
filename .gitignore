@@ -6,7 +6,6 @@
 !/fish/conf.d/50-main.fish
 !/fish/functions
 !/fish/functions/fish_greeting.fish
-!/fish/functions/fish_prompt.fish
 !/fish/functions/l.fish
 !/fish/functions/ll.fish
 !/fish/functions/lll.fish
@@ -20,6 +19,7 @@
 !/kitty/kitty.conf
 !/LaunchAgents
 !/LaunchAgents/co.t19.*
+!/starship.toml
 !/tmux
 !/tmux/tmux.conf
 !/.gitignore

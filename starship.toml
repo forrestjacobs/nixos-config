@@ -1,0 +1,29 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$nix_shell\
+$status\
+$character"""
+
+[directory]
+truncate_to_repo = false # too slow
+[directory.substitutions]
+'~/projects/' = ''
+'~/Projects/' = ''
+
+[git_branch]
+symbol = ''
+style = 'purple'
+ignore_branches = ['main', 'master']
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[status]
+disabled = false
