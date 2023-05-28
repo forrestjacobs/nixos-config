@@ -1,0 +1,11 @@
+{
+  "version": "1.32.3.7089-b0a36929b",
+  "release": {
+    "label": "Ubuntu (16.04+) / Debian (8+) - ARMv8",
+    "build": "linux-aarch64",
+    "distro": "debian",
+    "url": "https://downloads.plex.tv/plex-media-server-new/1.32.3.7089-b0a36929b/debian/plexmediaserver_1.32.3.7089-b0a36929b_arm64.deb",
+    "checksum": "d66e926ea8a6e0951d8f925425c3074098797c20"
+  },
+  "sha1": "41y7k6200z1jam4jiwfrbq56m1p94vnn"
+}

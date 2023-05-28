@@ -10,6 +10,8 @@
 !/fish/functions/ll.fish
 !/fish/functions/lll.fish
 !/fish/functions/remote.fish
+!/flake.lock
+!/flake.nix
 !/git
 !/git/ignore
 !/git/main.inc
