@@ -1,17 +1,11 @@
 { config, lib, pkgs, inputs, ... }: {
 
   imports = [
+    ../shared
+
     ./cloudflared.nix
     ./forrest.nix
     ./impermanence.nix
-  ];
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      unstable = import inputs.unstable-pkgs {
-        system = final.system;
-      };
-    })
   ];
 
   boot.loader.timeout = 3;
@@ -28,11 +22,7 @@
   };
 
   nix = {
-    settings = {
-      auto-optimise-store = true;
-      allowed-users = [ "@wheel" ];
-      experimental-features = [ "nix-command" "flakes" ];
-    };
+    settings.allowed-users = [ "@wheel" ];
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
@@ -41,12 +31,9 @@
 
   programs = {
     command-not-found.enable = false;
-    fish = {
-      enable = true;
-      shellInit = ''
-        set -gx EDITOR hx
-      '';
-    };
+    fish.shellInit = ''
+      set -gx EDITOR hx
+    '';
     mosh.enable = lib.mkDefault config.services.openssh.enable;
   };
 
