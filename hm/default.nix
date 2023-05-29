@@ -5,11 +5,10 @@
   home.packages = [
     (pkgs.stdenv.mkDerivation {
       name = "home-bin";
-      src = ../bin;
+      src = ./bin;
       installPhase = ''
-        shopt -s extglob
         mkdir -p $out/bin
-        cp !(dot*) $out/bin
+        cp * $out/bin
       '';
     })
 
@@ -45,17 +44,17 @@
 
   xdg.configFile = {
     fish = {
-      source = ../../fish;
+      source = ./fish;
       recursive = true;
     };
     git = {
-      source = ../../git;
+      source = ./git;
       recursive = true;
     };
-    helix.source = ../../helix;
-    kitty.source = ../../kitty;
-    tmux.source = ../../tmux;
-    "starship.toml".source = ../../starship.toml;
+    helix.source = ./helix;
+    kitty.source = ./kitty;
+    tmux.source = ./tmux;
+    "starship.toml".source = ./starship.toml;
   };
 
 }

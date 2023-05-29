@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
 
   imports = [
-    ../nixos
+    ../../nixos
 
     ./docker.nix
     ./hardware-configuration.nix

@@ -4,7 +4,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.forrest = { pkgs, ... }: {
-      imports = [ ./home.nix ];
+      imports = [ ../hm ];
     };
   };
 

@@ -38,7 +38,7 @@ in
 
       hashed=$(nix-hash --to-base32 "$(echo "$versionInfo" | jq -r '.release.checksum')" --type sha1)
 
-      echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > /etc/nixos/dots/mariner/plexpass.json
+      echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > /etc/nixos/hosts/mariner/plexpass.json
     '';
   };
 

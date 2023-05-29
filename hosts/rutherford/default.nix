@@ -8,8 +8,9 @@ let fish = "/nix/var/nix/profiles/system/sw/bin/fish";
 in {
 
   imports = [
+    ../../shared
+
     inputs.home-manager.darwinModules.home-manager
-    ../shared
   ];
 
   environment.shells = [ fish ];

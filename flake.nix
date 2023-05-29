@@ -29,19 +29,19 @@
         rutherford = darwin.lib.darwinSystem {
           inherit specialArgs;
           system = "aarch64-darwin";
-          modules = [ ./dots/rutherford ];
+          modules = [ ./hosts/rutherford ];
         };
       };
       nixosConfigurations = {
         freeman = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = "x86_64-linux";
-          modules = [ ./dots/freeman ];
+          modules = [ ./hosts/freeman ];
         };
         mariner = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = "aarch64-linux";
-          modules = [ ./dots/mariner ];
+          modules = [ ./hosts/mariner ];
         };
       };
     };
