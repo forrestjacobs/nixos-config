@@ -3,6 +3,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     unstable-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,9 +22,16 @@
     };
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { darwin, home-manager, nixpkgs, ... }@inputs:
     let specialArgs.inputs = inputs;
     in {
+      darwinConfigurations = {
+        rutherford = darwin.lib.darwinSystem {
+          inherit specialArgs;
+          system = "aarch64-darwin";
+          modules = [ ./dots/rutherford ];
+        };
+      };
       nixosConfigurations = {
         freeman = nixpkgs.lib.nixosSystem {
           inherit specialArgs;

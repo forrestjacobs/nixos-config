@@ -53,6 +53,7 @@
       recursive = true;
     };
     helix.source = ../../helix;
+    kitty.source = ../../kitty;
     tmux.source = ../../tmux;
     "starship.toml".source = ../../starship.toml;
   };
