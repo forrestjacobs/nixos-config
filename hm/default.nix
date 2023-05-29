@@ -39,16 +39,29 @@
     enable = true;
     userName = "Forrest Jacobs";
     userEmail = "forrestjacobs@gmail.com";
-    extraConfig.include.path = "~/.config/git/main.inc";
+    extraConfig = {
+      diff.colorMoved = "default";
+      init.defaultBranch = "main";
+      merge.conflictstyle = "diff3";
+      pull.ff = "only";
+    };
+    ignores = [
+      ".DS_Store"
+      "*.forrest"
+      "*.forrest.*"
+    ];
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+      };
+    };
   };
 
   xdg.configFile = {
     fish = {
       source = ./fish;
-      recursive = true;
-    };
-    git = {
-      source = ./git;
       recursive = true;
     };
     helix.source = ./helix;
