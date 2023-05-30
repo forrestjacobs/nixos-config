@@ -15,6 +15,17 @@ in {
 
   environment.shells = [ fish ];
 
+  homebrew = {
+    enable = true;
+    taps = [
+      "homebrew/cask-fonts"
+    ];
+    casks = [
+      "font-sarasa-gothic"
+      "kitty"
+    ];
+  };
+
   services.nix-daemon.enable = true;
 
   users.users.forrest = {
