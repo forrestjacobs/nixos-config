@@ -1,5 +1,9 @@
 { lib, pkgs, config, inputs, ... }: {
 
+  imports = [
+    ./shell.nix
+  ];
+
   home.stateVersion = "22.11";
 
   home.packages = [
@@ -14,10 +18,8 @@
 
     pkgs.bat
     pkgs.delta
-    pkgs.direnv
     pkgs.exa
     pkgs.gitui
-    pkgs.unstable.helix
     pkgs.htop
     pkgs.jq
     pkgs.lsof
@@ -30,7 +32,6 @@
     pkgs.p7zip
     pkgs.patchutils
     pkgs.rnix-lsp # nix lsp
-    pkgs.starship
     pkgs.tmux
     pkgs.unzip
   ];
@@ -59,15 +60,23 @@
     };
   };
 
-  xdg.configFile = {
-    fish = {
-      source = ./fish;
-      recursive = true;
+  programs.helix = {
+    enable = true;
+    package = pkgs.unstable.helix;
+    settings = {
+      theme = "base16_transparent";
+      editor = {
+        color-modes = true;
+        cursor-shape.insert = "bar";
+        indent-guides.render = true;
+        line-number = "relative";
+      };
     };
-    helix.source = ./helix;
+  };
+
+  xdg.configFile = {
     kitty.source = ./kitty;
     tmux.source = ./tmux;
-    "starship.toml".source = ./starship.toml;
   };
 
 }
