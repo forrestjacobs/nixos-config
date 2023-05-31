@@ -19,6 +19,8 @@
     pkgs.bat
     pkgs.delta
     pkgs.exa
+    pkgs.fd
+    pkgs.fzf
     pkgs.gitui
     pkgs.htop
     pkgs.jq

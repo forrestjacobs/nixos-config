@@ -1,5 +1,9 @@
 { lib, pkgs, config, inputs, ... }: {
 
+  home.packages = [
+    pkgs.fishPlugins.fzf-fish
+  ];
+
   home.sessionVariables =
     let cache = "$HOME/.cache";
     in {
