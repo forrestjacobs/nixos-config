@@ -20,7 +20,6 @@
     pkgs.delta
     pkgs.exa
     pkgs.fd
-    pkgs.fzf
     pkgs.gitui
     pkgs.htop
     pkgs.jq
@@ -37,6 +36,8 @@
     pkgs.tmux
     pkgs.unzip
   ];
+
+  programs.fzf.enable = true;
 
   programs.git = {
     enable = true;
