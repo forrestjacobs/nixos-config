@@ -42,7 +42,7 @@
   programs.git = {
     enable = true;
     userName = "Forrest Jacobs";
-    userEmail = "forrestjacobs@gmail.com";
+    userEmail = lib.mkDefault "forrestjacobs@gmail.com";
     extraConfig = {
       diff.colorMoved = "default";
       init.defaultBranch = "main";
