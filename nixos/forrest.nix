@@ -17,7 +17,7 @@ in
 
   config = {
 
-    nixpkgs.config.permittedInsecurePackages = [ "nodejs-16.20.0" ];
+    nixpkgs.config.permittedInsecurePackages = [ pkgs.nodejs-16_x.name ];
 
     home-manager = {
       useGlobalPkgs = true;
