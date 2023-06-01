@@ -22,6 +22,10 @@
     })
   ];
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    babelfishPackage = pkgs.babelfish;
+    useBabelfish = true;
+  };
 
 }
