@@ -1,5 +1,7 @@
 { config, lib, pkgs, inputs, ... }: {
 
+  imports = [ ../shared.nix ];
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -10,17 +12,9 @@
 
   nix.settings = {
     # Not on Mac because https://github.com/NixOS/nix/issues/7273
-    auto-optimise-store = !pkgs.stdenv.isDarwin;
+    auto-optimise-store = false;
     experimental-features = [ "nix-command" "flakes" ];
   };
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      unstable = import inputs.unstable-pkgs {
-        system = final.system;
-      };
-    })
-  ];
 
   programs.fish = {
     enable = true;

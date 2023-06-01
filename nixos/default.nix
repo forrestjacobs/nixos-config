@@ -1,9 +1,8 @@
 { config, lib, pkgs, inputs, ... }: {
 
   imports = [
-    ../shared
+    ../shared.nix
 
-    ./cloudflared.nix
     ./forrest.nix
     ./impermanence.nix
   ];
@@ -22,7 +21,11 @@
   };
 
   nix = {
-    settings.allowed-users = [ "@wheel" ];
+    settings = {
+      allowed-users = [ "@wheel" ];
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
@@ -31,9 +34,12 @@
 
   programs = {
     command-not-found.enable = false;
-    fish.shellInit = ''
-      set -gx EDITOR hx
-    '';
+    fish = {
+      enable = true;
+      shellInit = ''
+        set -gx EDITOR hx
+      '';
+    };
     mosh.enable = lib.mkDefault config.services.openssh.enable;
   };
 
@@ -45,8 +51,8 @@
   services.journald.extraConfig = lib.mkDefault "SystemMaxUse=500M";
 
   services.openssh = {
-    passwordAuthentication = false;
-    permitRootLogin = "no";
+    settings.PasswordAuthentication = false;
+    settings.PermitRootLogin = "no";
     ports = [ 36522 ];
   };
 
