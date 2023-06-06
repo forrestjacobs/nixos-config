@@ -1,22 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
-let
-  inherit (builtins) listToAttrs map;
-  main = "/dev/sda2";
-  subvolume = name: {
-    device = main;
-    fsType = "btrfs";
-    options = [ "subvol=${name}" "compress=zstd" "noatime" ];
-  };
-  subvolumes = names: listToAttrs (map
-    (name: {
-      name = "/${name}";
-      value = subvolume name;
-    })
-    names);
-
-in
-{
+{ config, lib, pkgs, modulesPath, ... }: {
 
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -30,29 +12,16 @@ in
 
     loader = {
       efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        netbootxyz.enable = true;
-      };
+      systemd-boot.enable = true;
     };
   };
 
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-uuid/1B4E-CA38";
-      fsType = "vfat";
-    };
-    "/mnt/main" = {
-      device = main;
-      fsType = "btrfs";
-    };
-  } // subvolumes [
-    "etc/nixos"
-    "home"
-    "nix"
-    "var/lib"
-    "var/log"
-  ];
+  impermanance.btrfs.device = "/dev/sda2";
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1B4E-CA38";
+    fsType = "vfat";
+  };
 
   networking = {
     useDHCP = false;

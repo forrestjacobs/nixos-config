@@ -7,7 +7,10 @@
     ./impermanence.nix
   ];
 
-  boot.loader.timeout = 3;
+  boot.loader = {
+    timeout = 3;
+    systemd-boot.netbootxyz.enable = true;
+  };
 
   environment = {
     defaultPackages = lib.mkForce [ ];
