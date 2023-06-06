@@ -33,6 +33,11 @@
         };
       };
       nixosConfigurations = {
+        boimler = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
+          modules = [ ./hosts/boimler ];
+        };
         freeman = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = "x86_64-linux";
