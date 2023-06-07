@@ -16,7 +16,7 @@
     };
   };
 
-  impermanance.btrfs.device = "/dev/sda2";
+  impermanence.btrfs.device = "/dev/sda2";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/1B4E-CA38";
