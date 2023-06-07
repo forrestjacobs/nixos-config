@@ -5,6 +5,7 @@
     ../../nixos
 
     ./hardware-configuration.nix
+    ./media.nix
   ];
 
   # from local config

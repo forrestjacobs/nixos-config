@@ -1,0 +1,11 @@
+{
+  "version": "1.32.4.7164-1dc22f47b",
+  "release": {
+    "label": "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit",
+    "build": "linux-x86_64",
+    "distro": "debian",
+    "url": "https://downloads.plex.tv/plex-media-server-new/1.32.4.7164-1dc22f47b/debian/plexmediaserver_1.32.4.7164-1dc22f47b_amd64.deb",
+    "checksum": "c071bb57f2bc60ec0e563695fd10616bdbef92ab"
+  },
+  "sha1": "mf9fznvbc48gv59naq7fqq5wy9bvnwf0"
+}
