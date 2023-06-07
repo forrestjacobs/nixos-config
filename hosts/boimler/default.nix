@@ -4,6 +4,7 @@
   imports = [
     ../../nixos
 
+    ./docker.nix
     ./hardware-configuration.nix
     ./media.nix
   ];
