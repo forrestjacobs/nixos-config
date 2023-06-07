@@ -1,4 +1,14 @@
-{ lib, pkgs, config, inputs, ... }: {
+{ lib, pkgs, config, inputs, ... }:
+
+let
+  root =
+    if pkgs.stdenv.isDarwin
+    then "${config.home.homeDirectory}/.config/darwin"
+    else "/etc/nixos";
+  link = path: config.lib.file.mkOutOfStoreSymlink "${root}/hm/${path}";
+
+in
+{
 
   imports = [
     ./shell.nix
@@ -78,8 +88,8 @@
   };
 
   xdg.configFile = {
-    kitty.source = ./kitty;
-    tmux.source = ./tmux;
+    kitty.source = link "kitty";
+    tmux.source = link "tmux";
   };
 
 }
