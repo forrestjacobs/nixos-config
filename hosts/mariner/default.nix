@@ -3,10 +3,7 @@
   imports = [
     ../../nixos
 
-    ./docker.nix
     ./hardware-configuration.nix
-    ./media.nix
-    ./rclone.nix
   ];
 
   # from local config
