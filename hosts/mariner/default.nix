@@ -30,13 +30,6 @@
 
   users.users.forrest = {
     passwordFile = "/etc/nixos/local/forrest-password";
-    extraGroups = [
-      "wheel"
-      "cloudflared"
-    ];
-    packages = [
-      pkgs.rclone
-    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAI9YXHVezSBj+0RZA88GMzq+WCF6KL233ll9nD7UXD"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXWLpi6e2AQXVc36dHO0TrF676J6eiCU3Gl7gTCduWw forrest@rutherford"
