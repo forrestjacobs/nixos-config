@@ -17,11 +17,15 @@
 
   environment.etc.machine-id.source = "/etc/nixos/local/machine-id";
 
-  networking.hostName = "boimler"; # Define your hostname.
+  networking.hostName = "boimler";
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  services.cloudflared = {
+    enable = true;
+    tunnels."2a9a5063-1732-45fd-a1f7-2520f9120c25" = {
+      credentialsFile = "/etc/nixos/local/cloudflared/tunnel.json";
+      default = "http_status:404";
+    };
+  };
 
   services.openssh.enable = true;
 
