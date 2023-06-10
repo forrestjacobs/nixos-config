@@ -19,6 +19,14 @@
 
   networking.hostName = "boimler";
 
+  services.cloudflare-dyndns = {
+    enable = true;
+    apiTokenFile = "/etc/nixos/local/cloudflare-api-token";
+    ipv4 = true;
+    ipv6 = true;
+    domains = [ "boimler.t19.co" ];
+  };
+
   services.cloudflared = {
     enable = true;
     tunnels."2a9a5063-1732-45fd-a1f7-2520f9120c25" = {
