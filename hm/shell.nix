@@ -1,5 +1,9 @@
 { lib, pkgs, config, inputs, ... }: {
 
+  home.packages = [
+    pkgs.fishPlugins.hydro
+  ];
+
   home.sessionVariables =
     let cache = "$HOME/.cache";
     in {
@@ -20,6 +24,9 @@
 
       # helix
       EDITOR = "hx";
+
+      # hydro
+      hydro_color_pwd = "$fish_color_cwd";
 
       # less
       PAGER = "less";
@@ -64,32 +71,6 @@
     };
     shellAbbrs = {
       se = "sudoedit";
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-      command_timeout = 50;
-
-      format = lib.concatStrings [
-        "$directory"
-        "$git_branch"
-        "$git_commit"
-        "$git_state"
-        "$git_status"
-        "$status"
-        "$character"
-      ];
-
-      git_branch = {
-        style = "purple";
-        ignore_branches = [ "main" "master" ];
-        format = "[$branch(:$remote_branch)]($style) ";
-      };
-
-      status.disabled = false;
     };
   };
 
