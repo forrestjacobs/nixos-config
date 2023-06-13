@@ -43,6 +43,8 @@ in
     };
   };
 
+  services.tautulli.enable = true;
+
   # Thanks to https://gist.github.com/iamevn/11952b966c05ca799f4910e02c2ffe4a
   systemd.services.update-plexpass-lock = {
     description = "Update Plexpass lock";
