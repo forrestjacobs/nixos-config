@@ -37,6 +37,8 @@
 
   services.openssh.enable = true;
 
+  services.syncthing.enable = true;
+
   users.users.forrest = {
     passwordFile = "/etc/nixos/local/forrest-password";
     openssh.authorizedKeys.keys = [
