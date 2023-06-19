@@ -22,6 +22,7 @@ in
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      extraSpecialArgs.hostName = config.networking.hostName;
       users.forrest = { pkgs, ... }: {
         imports = [
           ../hm
