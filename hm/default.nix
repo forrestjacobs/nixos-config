@@ -116,6 +116,7 @@ in
   };
 
   xdg.configFile = {
+    "fish/conf.d/50-main.fish".source = link "fish/config.fish";
     kitty.source = link "kitty";
     "tmux/tmux.conf".text = ''
       source ${link "tmux/tmux.conf"}
