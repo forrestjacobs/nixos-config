@@ -46,10 +46,6 @@ let
 in
 {
 
-  imports = [
-    ./shell.nix
-  ];
-
   home.stateVersion = "22.11";
 
   home.packages = [
@@ -58,6 +54,7 @@ in
     pkgs.delta
     pkgs.exa
     pkgs.fd
+    pkgs.fishPlugins.hydro
     pkgs.gitui
     pkgs.htop
     pkgs.jq
@@ -76,7 +73,26 @@ in
     pkgs.unzip
   ];
 
+  programs.direnv.enable = true;
+
   programs.fzf.enable = true;
+
+  programs.fish = {
+    enable = true;
+
+    functions = {
+      l = "bat -p $argv";
+      ll = "exa -aagl $argv";
+      lll = "exa -glT --level=2 $argv";
+      remote = {
+        argumentNames = [ "target" ];
+        body = ''ssh -t "$target" term'';
+      };
+    };
+    shellAbbrs = {
+      se = "sudoedit";
+    };
+  };
 
   programs.git = {
     enable = true;
