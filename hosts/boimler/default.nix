@@ -23,7 +23,7 @@
     enable = true;
     apiTokenFile = "/etc/nixos/local/cloudflare-api-token";
     ipv4 = true;
-    ipv6 = true;
+    ipv6 = false;
     domains = [ "boimler.t19.co" ];
   };
 
