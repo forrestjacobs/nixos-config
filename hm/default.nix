@@ -64,6 +64,7 @@ in
     pkgs.lsof
     pkgs.mosh
     pkgs.ncdu
+    pkgs.nil
     pkgs.nix-tree
     pkgs.nixpkgs-fmt
     pkgs.nodePackages.bash-language-server # bash lsp
