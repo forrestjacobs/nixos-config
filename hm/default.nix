@@ -91,8 +91,11 @@ in
     };
     shellAbbrs = {
       garbage = "sudo nix-collect-garbage --delete-old";
-      rebuild = "sudo nixos-rebuild switch";
-      se = "sudoedit";
+      rebuild =
+        if pkgs.stdenv.isDarwin
+        then "darwin-rebuild switch --flake ~/.config/darwin"
+        else "sudo nixos-rebuild switch";
+      se = "sudo -e";
     };
   };
 
