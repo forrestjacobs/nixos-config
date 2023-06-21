@@ -90,6 +90,8 @@ in
       };
     };
     shellAbbrs = {
+      garbage = "sudo nix-collect-garbage --delete-old";
+      rebuild = "sudo nixos-rebuild switch";
       se = "sudoedit";
     };
   };
