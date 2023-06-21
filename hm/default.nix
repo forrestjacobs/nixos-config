@@ -1,4 +1,4 @@
-{ lib, pkgs, config, inputs, hostName, ... }:
+{ lib, pkgs, config, inputs, osConfig, ... }:
 
 let
   root =
@@ -42,6 +42,8 @@ let
       m = y - (54 * r) / 255 - (182 * g) / 255 - (18 * b) / 255;
     in
     "${toComponent (r + m)}${toComponent (g + m)}${toComponent (b + m)}";
+  hostName = osConfig.networking.hostName;
+  genHostColor = gencolor hostName;
 
 in
 {
@@ -142,7 +144,7 @@ in
     kitty.source = link "kitty";
     "tmux/tmux.conf".text = ''
       source ${link "tmux/tmux.conf"}
-      set -g status-right "#[bg=#${gencolor hostName 64}] #h #[bg=default] "
+      set -g status-right "#[bg=#${genHostColor 64}] ${hostName} #[bg=default] "
     '';
   };
 
