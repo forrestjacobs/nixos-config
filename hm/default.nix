@@ -141,6 +141,9 @@ in
 
   xdg.configFile = {
     "fish/conf.d/50-main.fish".source = link "fish/config.fish";
+    "fish/conf.d/60-generated.fish".text = ''
+      set -xg hydro_color_prompt ${genHostColor 160}
+    '';
     kitty.source = link "kitty";
     "tmux/tmux.conf".text = ''
       source ${link "tmux/tmux.conf"}

@@ -39,7 +39,11 @@ set -xg fish_greeting
 set -xg EDITOR hx
 
 # hydro
-set -xg hydro_color_pwd "$fish_color_cwd"
+set -xg hydro_symbol_prompt "❯"
+set -xg hydro_color_pwd      blue
+set -xg hydro_color_git      cyan
+set -xg hydro_color_duration black
+set -xg hydro_color_error    red
 
 # less
 set -xg PAGER less
