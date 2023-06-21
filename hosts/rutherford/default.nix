@@ -2,4 +2,6 @@
 
   imports = [ ../../darwin ];
 
+  networking.hostName = "rutherford";
+
 }
