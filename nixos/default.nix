@@ -51,6 +51,8 @@
     wheelNeedsPassword = false;
   };
 
+  services.fstrim.enable = lib.mkDefault true;
+
   services.journald.extraConfig = lib.mkDefault "SystemMaxUse=500M";
 
   services.openssh = {
