@@ -37,6 +37,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    environment.systemPackages = [
+      pkgs.btrfs-progs
+    ];
+
     services.openssh.hostKeys = [
       { type = "ed25519"; path = "/etc/nixos/local/ssh/ssh_host_ed25519_key"; }
     ];
@@ -52,6 +56,11 @@ in
         fsType = "btrfs";
       };
     } // listToAttrs (map toSubvolumeMount cfg.btrfs.subvolumes);
+
+    services.btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/mnt/main" ];
+    };
 
     users.mutableUsers = false;
 
