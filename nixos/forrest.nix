@@ -53,6 +53,8 @@ in
       isNormalUser = true;
       description = "Forrest Jacobs";
       extraGroups = lib.mkDefault [ "wheel" ];
+      openssh.authorizedKeys.keys =
+        builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../hosts/${config.networking.hostName}/keys);
     };
 
     services.syncthing = {

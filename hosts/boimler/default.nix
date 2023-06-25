@@ -39,14 +39,7 @@
 
   services.syncthing.enable = true;
 
-  users.users.forrest = {
-    passwordFile = "/etc/nixos/local/forrest-password";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNCUl6rMSDG6nUIP3R8Yl3FYmRX2WqBEOdveeHoNHze"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHnTI+/sLyLXQCyn11sUIdwqYYvgja2QRTwJ8Xmwseaz forrest@freeman"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBO0YFVBF/uw/nMapD1BXXvrT8kwKCyOWGw15MFE4VtT forrest@rutherford"
-    ];
-  };
+  users.users.forrest.passwordFile = "/etc/nixos/local/forrest-password";
 
 }
 
