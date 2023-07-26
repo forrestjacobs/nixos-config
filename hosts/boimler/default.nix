@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
 
   imports = [
@@ -7,6 +7,7 @@
     ./docker.nix
     ./hardware-configuration.nix
     ./media.nix
+    ./plasma.nix
   ];
 
   # from local config
