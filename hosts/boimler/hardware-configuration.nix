@@ -28,10 +28,6 @@
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  networking = {
-    useDHCP = false;
-    useNetworkd = true;
-    interfaces.enp0s25.useDHCP = true;
-  };
+  networking.networkmanager.enable = true;
 
 }
