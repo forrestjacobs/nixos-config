@@ -1,11 +1,11 @@
 {
-  "version": "1.32.5.7328-2632c9d3a",
+  "version": "1.32.6.7371-b6a09ad81",
   "release": {
     "label": "Ubuntu (16.04+) / Debian (8+) - Intel/AMD 64-bit",
     "build": "linux-x86_64",
     "distro": "debian",
-    "url": "https://downloads.plex.tv/plex-media-server-new/1.32.5.7328-2632c9d3a/debian/plexmediaserver_1.32.5.7328-2632c9d3a_amd64.deb",
-    "checksum": "6c854c0b8406e18a5e1482516016091e7234d499"
+    "url": "https://downloads.plex.tv/plex-media-server-new/1.32.6.7371-b6a09ad81/debian/plexmediaserver_1.32.6.7371-b6a09ad81_amd64.deb",
+    "checksum": "faf4d793bd717f913c97f426b20bbfd77fe08874"
   },
-  "sha1": "k7a38why14b60lc22ig8mq86hh5lr1bc"
+  "sha1": "fj4f0zyppw5v49pljwy92zvipn9xgx7s"
 }
