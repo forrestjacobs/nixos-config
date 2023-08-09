@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
   imports = [
@@ -20,12 +20,21 @@
 
   networking.hostName = "boimler";
 
-  services.cloudflare-dyndns = {
-    enable = true;
-    apiTokenFile = "/etc/nixos/local/cloudflare-api-token";
-    ipv4 = true;
-    ipv6 = false;
-    domains = [ "boimler.t19.co" ];
+  systemd.services.cloudflare-dyndns = {
+    description = "CloudFlare Dynamic DNS Client";
+    after = [ "network.target" ];
+    startAt = "*:0/15";
+
+    environment.CLOUDFLARE_DOMAINS = toString [ "boimler.t19.co" ];
+
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      StateDirectory = "cloudflare-dyndns";
+      EnvironmentFile = "/etc/nixos/local/cloudflare-api-token";
+      ExecStart =
+        "${pkgs.cloudflare-dyndns}/bin/cloudflare-dyndns --cache-file /var/lib/cloudflare-dyndns/ip.cache -4 -no-6";
+    };
   };
 
   services.cloudflared = {
