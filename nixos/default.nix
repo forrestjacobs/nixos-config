@@ -7,10 +7,7 @@
     ./impermanence.nix
   ];
 
-  boot.loader = {
-    timeout = 3;
-    systemd-boot.netbootxyz.enable = true;
-  };
+  boot.loader.systemd-boot.netbootxyz.enable = true;
 
   environment = {
     defaultPackages = lib.mkForce [ ];
@@ -53,8 +50,6 @@
 
   services.fstrim.enable = lib.mkDefault true;
 
-  services.journald.extraConfig = lib.mkDefault "SystemMaxUse=500M";
-
   services.openssh = {
     settings.PasswordAuthentication = false;
     settings.PermitRootLogin = "no";
@@ -73,10 +68,6 @@
   };
 
   system.stateVersion = lib.mkDefault "22.05";
-
-  systemd.coredump.extraConfig = ''
-    Storage=none
-  '';
 
   time.timeZone = "America/New_York";
 
