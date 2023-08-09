@@ -7,7 +7,7 @@
     ./docker.nix
     ./hardware-configuration.nix
     ./media.nix
-    ./plasma.nix
+    ./tv.nix
   ];
 
   # from local config
