@@ -8,6 +8,7 @@ let
     value = {
       device = cfg.btrfs.device;
       fsType = "btrfs";
+      neededForBoot = true;
       options = [ "subvol=${name}" "compress=zstd" "noatime" ];
     };
   };
