@@ -8,12 +8,15 @@ jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
     permissions:
-      # required for git-auto-commit-action
-      contents: write
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@v1
-      - uses: DeterminateSystems/update-flake-lock@v19
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update flake.lock
+      - id: update
+        uses: DeterminateSystems/update-flake-lock@v19
+      - name: Merge
+        run: gh pr merge "$PR_NUM"
+        env:
+          PR_NUM: ${{ steps.update.outputs.pull-request-number }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
