@@ -28,6 +28,7 @@
     };
     gc = {
       automatic = true;
+      persistent = false;
       options = "--delete-older-than 14d";
     };
   };
