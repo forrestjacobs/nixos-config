@@ -58,7 +58,8 @@
   };
 
   system.autoUpgrade = {
-    enable = true;
+    # TODO: Pull origin/main overnight and do an nixos-rebuild switch & reboot if needed
+    enable = false;
     allowReboot = true;
     flags = (
       lib.concatMap
