@@ -69,6 +69,17 @@
 
   system.stateVersion = lib.mkDefault "22.05";
 
+  systemd.services.fetch-dots = {
+    description = "Fetch dot updates";
+    startAt = "hourly";
+    path = [ pkgs.openssh ];
+    serviceConfig = {
+      User = "forrest";
+      WorkingDirectory = "/etc/nixos";
+      ExecStart = "${pkgs.git}/bin/git fetch";
+    };
+  };
+
   time.timeZone = "America/New_York";
 
   users.defaultUserShell = pkgs.fish;
