@@ -53,6 +53,7 @@ in
   home.packages = [
     home-bin
     pkgs.bat
+    pkgs.darkhttpd
     pkgs.delta
     pkgs.exa
     pkgs.fd
