@@ -84,6 +84,18 @@ in
     enable = true;
 
     functions = {
+      fish_greeting = {
+        argumentNames = [];
+        body = ''
+          set -l old_pwd $PWD
+          cd "${root}"
+          set -l behind (git 'rev-list' '^HEAD' 'origin/main' '--count')
+          if test "$behind" != "0"
+            echo "${root} is behind 'origin/main' by $behind commits."
+          end
+          cd $old_pwd
+        '';
+      };
       l = "bat -p $argv";
       ll = "exa -aagl $argv";
       lll = "exa -glT --level=2 $argv";

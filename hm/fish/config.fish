@@ -38,9 +38,6 @@ set -xg BAT_THEME ansi
 # exa
 set -xg TIME_STYLE iso
 
-# fish
-set -xg fish_greeting
-
 # helix
 set -xg EDITOR hx
 
