@@ -7,9 +7,6 @@ on:
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@v1
