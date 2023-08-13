@@ -1,15 +1,18 @@
-name: update-flake-lock
+name: update-dependencies
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
     - cron: '0 6 * * *' # daily at 1 am EST/2 am EDT
 
 jobs:
-  update-flake-lock:
+  update-dependencies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@v1
+      - name: Update Plex
+        run: ./.github/scripts/updateplex.sh
+        shell: bash
       - id: update
         uses: DeterminateSystems/update-flake-lock@v19
       - name: Merge
