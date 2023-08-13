@@ -45,25 +45,6 @@ in
 
   services.tautulli.enable = true;
 
-  # Thanks to https://gist.github.com/iamevn/11952b966c05ca799f4910e02c2ffe4a
-  # TODO: Do this as a Github action
-  systemd.services.update-plexpass-lock = {
-    description = "Update Plexpass lock";
-    before = [ "nixos-upgrade.service" ];
-    wantedBy = [ "nixos-upgrade.service" ];
-    path = [ pkgs.curl pkgs.jq pkgs.nix ];
-    script = ''
-      versionInfo=$(curl -s -H "X-Plex-Token: KsjLojn4Bpq89zTV_6QL" "https://plex.tv/api/downloads/5.json?channel=plexpass" | jq '{
-        version: .computer.Linux.version,
-        release: .computer.Linux.releases | map(select(.build == "linux-x86_64" and .distro == "debian"))[0],
-      }')
-
-      hashed=$(nix-hash --to-base32 "$(echo "$versionInfo" | jq -r '.release.checksum')" --type sha1)
-
-      echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > /etc/nixos/hosts/boimler/plexpass.json
-    '';
-  };
-
   users.groups.media.gid = 994;
   users.users.media = {
     isSystemUser = true;
