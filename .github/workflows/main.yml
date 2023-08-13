@@ -13,6 +13,8 @@ jobs:
       - name: Update Plex
         run: ./.github/scripts/updateplex.sh
         shell: bash
+        env:
+          PLEX_TOKEN: ${{ secrets.PLEX_TOKEN }}
       - id: update
         uses: DeterminateSystems/update-flake-lock@v19
       - name: Merge
