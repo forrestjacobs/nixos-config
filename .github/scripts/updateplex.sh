@@ -5,6 +5,11 @@
 
 set -euo pipefail
 
+export GIT_AUTHOR_NAME="github-actions[bot]"
+export GIT_AUTHOR_EMAIL="<github-actions[bot]@users.noreply.github.com>"
+export GIT_COMMITTER_NAME="github-actions[bot]"
+export GIT_COMMITTER_EMAIL="<github-actions[bot]@users.noreply.github.com>"
+
 versionInfo=$(curl -s -H "X-Plex-Token: ${PLEX_TOKEN}" "https://plex.tv/api/downloads/5.json?channel=plexpass" | jq '{
   version: .computer.Linux.version,
   release: .computer.Linux.releases | map(select(.build == "linux-x86_64" and .distro == "debian"))[0],
