@@ -14,6 +14,8 @@
 
   impermanence.enable = true;
 
+  services.update-system.enable = true;
+
   # from global config
 
   environment.etc.machine-id.source = "/etc/nixos/local/machine-id";

@@ -11,6 +11,7 @@
   impermanence.enable = true;
 
   services.forrest-ssh-agent.enable = true;
+  services.update-system.enable = true;
 
   # from global config
 
