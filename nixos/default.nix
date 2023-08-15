@@ -5,6 +5,7 @@
 
     ./forrest.nix
     ./impermanence.nix
+    ./update.nix
   ];
 
   boot.loader.systemd-boot.netbootxyz.enable = true;
@@ -57,18 +58,6 @@
     ports = [ 36522 ];
   };
 
-  system.autoUpgrade = {
-    # TODO: Pull origin/main overnight and do an nixos-rebuild switch & reboot if needed
-    enable = false;
-    allowReboot = true;
-    flags = (
-      lib.concatMap
-        (input: [ "--update-input" input ])
-        (lib.remove "self" (builtins.attrNames inputs))
-    );
-    flake = "/etc/nixos";
-  };
-
   system.stateVersion = lib.mkDefault "22.05";
 
   systemd.services.fetch-dots = {
@@ -76,6 +65,7 @@
     startAt = "hourly";
     path = [ pkgs.openssh ];
     serviceConfig = {
+      Type = "oneshot";
       User = "forrest";
       WorkingDirectory = "/etc/nixos";
       ExecStart = "${pkgs.git}/bin/git fetch";
