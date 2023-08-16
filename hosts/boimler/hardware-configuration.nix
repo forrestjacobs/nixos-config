@@ -26,6 +26,17 @@
     fsType = "vfat";
   };
 
+  fileSystems."/swap" = {
+    device = config.impermanence.btrfs.device;
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=swap" "noatime" ];
+  };
+
+  swapDevices = [
+    { device = "/swap/swapfile"; }
+  ];
+
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking.networkmanager.enable = true;
