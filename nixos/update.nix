@@ -7,7 +7,7 @@
 
     systemd.services.update-system = {
       description = "Pull dot updates and rebuild system";
-      startAt = "4:30am";
+      startAt = "4:30";
       path = [
         pkgs.gitMinimal
         config.programs.ssh.package
