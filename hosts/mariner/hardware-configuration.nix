@@ -23,6 +23,17 @@
     fsType = "vfat";
   };
 
+  fileSystems."/swap" = {
+    device = config.impermanence.btrfs.device;
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=swap" "noatime" ];
+  };
+
+  swapDevices = [
+    { device = "/swap/swapfile"; }
+  ];
+
   networking = {
     useDHCP = false;
     useNetworkd = true;
