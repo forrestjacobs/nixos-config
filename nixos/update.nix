@@ -29,7 +29,7 @@ let
       fi
 
       if [ "$(${user-git} rev-list ^origin/main HEAD --count)" != "0" ]; then
-        fail "/etc/nixos is ahead of origin/master by ''${ahead} commits"
+        fail "/etc/nixos is ahead of origin/master"
       fi
 
       ${user-git} pull
