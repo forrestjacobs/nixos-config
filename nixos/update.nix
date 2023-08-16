@@ -28,6 +28,10 @@ let
         fail "/etc/nixos has local differences" 1>&2
       fi
 
+      if [ "$(${user-git} rev-list ^origin/main HEAD --count)" != "0" ]; then
+        fail "/etc/nixos is ahead of origin/master by ''${ahead} commits"
+      fi
+
       ${user-git} pull
       ${rebuild} switch
     '';
