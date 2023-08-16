@@ -105,7 +105,7 @@ in
       };
     };
     shellAbbrs = {
-      garbage = "sudo nix-collect-garbage --delete-old";
+      garbage = "sudo nix-collect-garbage --delete-older-than 14d";
       rebuild =
         if pkgs.stdenv.isDarwin
         then "darwin-rebuild switch --flake ~/.config/darwin"
