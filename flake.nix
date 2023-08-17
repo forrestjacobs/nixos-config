@@ -8,6 +8,7 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +23,7 @@
     };
   };
 
-  outputs = { darwin, home-manager, nixpkgs, ... }@inputs:
+  outputs = { darwin, flake-utils, home-manager, nixpkgs, ... }@inputs:
     let specialArgs.inputs = inputs;
     in {
       darwinConfigurations = {
@@ -49,6 +50,8 @@
           modules = [ ./hosts/mariner ];
         };
       };
-    };
+    } // flake-utils.lib.eachDefaultSystem (system: {
+      formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+    });
 
 }
