@@ -51,6 +51,8 @@ in
 
     systemd.services.update-system = lib.mkIf config.services.update-system.enable {
       description = "Pull dot updates and rebuild system";
+      restartIfChanged = false;
+      unitConfig.X-StopOnRemoval = false;
       startAt = "4:30";
       serviceConfig = {
         Type = "oneshot";
