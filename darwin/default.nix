@@ -14,21 +14,21 @@ in {
 
   environment.shells = [ fish ];
 
-  environment.userLaunchAgents."co.t19.fetch-dots.agent" = {
+  environment.userLaunchAgents."co.t19.fetch-dots.plist" = {
     text = ''
       <?xml version="1.0" encoding="UTF-8"?>
       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
       <plist version="1.0">
         <dict>
           <key>Label</key>
-          <string>co.t19.fetch-dots.agent</string>
+          <string>co.t19.fetch-dots</string>
           <key>ProgramArguments</key>
           <array>
             <string>/usr/bin/git</string>
             <string>fetch</string>
           </array>
           <key>WorkingDirectory</key>
-          <string>${config.users.users.forres.homet}/.config/darwin</string>
+          <string>${config.users.users.forrest.home}/.config/darwin</string>
           <key>StandardErrorPath</key>
           <string>/dev/null</string>
           <key>StandardOutPath</key>
