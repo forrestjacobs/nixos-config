@@ -12,8 +12,6 @@ in {
     inputs.home-manager.darwinModules.home-manager
   ];
 
-  environment.shells = [ fish ];
-
   environment.userLaunchAgents."co.t19.fetch-dots.plist" = {
     text = ''
       <?xml version="1.0" encoding="UTF-8"?>
