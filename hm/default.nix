@@ -85,7 +85,7 @@ in
 
     functions = {
       fish_greeting = {
-        argumentNames = [];
+        argumentNames = [ ];
         body = ''
           set -l old_pwd $PWD
           cd "${root}"
