@@ -99,9 +99,15 @@
           ];
         };
       };
-      templates.darwin = {
-        path = ./darwin/template;
-        description = "Base Mac configuration";
+      templates = {
+        darwin = {
+          path = ./darwin/template;
+          description = "Base Mac configuration";
+        };
+        nixos = {
+          path = ./nixos/template;
+          description = "Base NixOS configuration";
+        };
       };
     } // flake-utils.lib.eachDefaultSystem (system: {
       formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
