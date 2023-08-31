@@ -48,8 +48,8 @@
             };
             plex =
               let plexpass-lock = lib.importJSON ./plexpass.json;
-              in pkgs.plex.override {
-                plexRaw = pkgs.plexRaw.overrideAttrs (x: {
+              in prev.plex.override {
+                plexRaw = prev.plexRaw.overrideAttrs (x: {
                   name = "plexmediaserver-${plexpass-lock.version}";
                   src = pkgs.fetchurl {
                     url = plexpass-lock.release.url;
