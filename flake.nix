@@ -69,6 +69,12 @@
           ./darwin
         ];
       };
+      nixosModules.default = { ... }: {
+        imports = [
+          nixosInputs
+          ./nixos
+        ];
+      };
       nixosConfigurations = {
         boimler = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

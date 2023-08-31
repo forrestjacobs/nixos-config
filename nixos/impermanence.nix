@@ -26,6 +26,7 @@ in
         type = lib.types.listOf lib.types.str;
         default = [
           "etc/nixos"
+          "etc/persist"
           "home"
           "nix"
           "var/lib"
@@ -43,7 +44,7 @@ in
     ];
 
     services.openssh.hostKeys = [
-      { type = "ed25519"; path = "/etc/nixos/local/ssh/ssh_host_ed25519_key"; }
+      { type = "ed25519"; path = "/etc/persist/ssh/ssh_host_ed25519_key"; }
     ];
 
     fileSystems = {
