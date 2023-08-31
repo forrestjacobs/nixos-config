@@ -49,7 +49,7 @@ in
       description = "Forrest Jacobs";
       extraGroups = lib.mkDefault [ "wheel" ];
       openssh.authorizedKeys.keys =
-        builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../hosts/${config.networking.hostName}/keys);
+        builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../keys/${config.networking.hostName});
     };
 
     services.syncthing = {
