@@ -84,22 +84,13 @@
           ./nixos
         ];
       };
-      nixosConfigurations = {
-        boimler = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            nixosInputs
-            ./hosts/boimler
-          ];
-        };
-        freeman = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            nixosInputs
-            NixOS-WSL.nixosModules.wsl
-            ./hosts/freeman
-          ];
-        };
+      nixosConfigurations.freeman = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nixosInputs
+          NixOS-WSL.nixosModules.wsl
+          ./hosts/freeman
+        ];
       };
       templates = {
         darwin = {
