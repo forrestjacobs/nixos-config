@@ -4,10 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     unstable-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -27,7 +23,6 @@
     { self
     , nixpkgs
     , unstable-pkgs
-    , darwin
     , flake-utils
     , home-manager
     , NixOS-WSL
@@ -67,15 +62,12 @@
       };
     in
     {
-      darwinConfigurations = {
-        rutherford = darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          modules = [
-            overlays
-            home-manager.darwinModules.home-manager
-            ./hosts/rutherford
-          ];
-        };
+      darwinModules.default = { ... }: {
+        imports = [
+          overlays
+          home-manager.darwinModules.home-manager
+          ./darwin
+        ];
       };
       nixosConfigurations = {
         boimler = nixpkgs.lib.nixosSystem {
