@@ -1,11 +1,6 @@
 { lib, pkgs, config, osConfig, ... }:
 
 let
-  root =
-    if pkgs.stdenv.isDarwin
-    then "${config.home.homeDirectory}/.config/darwin"
-    else "/etc/nixos";
-  link = path: config.lib.file.mkOutOfStoreSymlink "${root}/hm/${path}";
   home-bin = (pkgs.stdenv.mkDerivation {
     name = "home-bin";
     src = ./bin;
@@ -84,18 +79,6 @@ in
     enable = true;
 
     functions = {
-      fish_greeting = {
-        argumentNames = [ ];
-        body = ''
-          set -l old_pwd $PWD
-          cd "${root}"
-          set -l behind (git 'rev-list' '^HEAD' 'origin/main' '--count')
-          if test "$behind" != "0"
-            echo "${root} is behind 'origin/main' by $behind commits."
-          end
-          cd $old_pwd
-        '';
-      };
       l = "bat -p $argv";
       ll = "exa -aagl $argv";
       lll = "exa -glT --level=2 $argv";
@@ -153,13 +136,13 @@ in
   };
 
   xdg.configFile = {
-    "fish/conf.d/50-main.fish".source = link "fish/config.fish";
+    "fish/conf.d/50-main.fish".source = ./fish/config.fish;
     "fish/conf.d/60-generated.fish".text = ''
       set -xg hydro_color_prompt ${genHostColor 160}
     '';
-    kitty.source = link "kitty";
+    "kitty/kitty.conf".source = ./kitty/kitty.conf;
     "tmux/tmux.conf".text = ''
-      source ${link "tmux/tmux.conf"}
+      source ${./tmux/tmux.conf}
       set -g status-right "#[bg=#${genHostColor 64}] ${hostName} #[bg=default] "
     '';
   };
