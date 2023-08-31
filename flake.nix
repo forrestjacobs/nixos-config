@@ -93,6 +93,10 @@
           ];
         };
       };
+      templates.darwin = {
+        path = ./darwin/template;
+        description = "Base Mac configuration";
+      };
     } // flake-utils.lib.eachDefaultSystem (system: {
       formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
     });
