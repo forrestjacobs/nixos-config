@@ -1,10 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-let
-  plexpass-lock = lib.importJSON ./plexpass.json;
-
-in
-{
+{ config, lib, pkgs, ... }: {
 
   environment.systemPackages = [ pkgs.cifs-utils ];
 
@@ -32,15 +26,6 @@ in
   services.plex = {
     enable = true;
     group = "media";
-    package = pkgs.plex.override {
-      plexRaw = pkgs.plexRaw.overrideAttrs (x: {
-        name = "plexmediaserver-${plexpass-lock.version}";
-        src = pkgs.fetchurl {
-          url = plexpass-lock.release.url;
-          sha1 = plexpass-lock.sha1;
-        };
-      });
-    };
   };
 
   services.tautulli.enable = true;

@@ -35,8 +35,6 @@
             unstable = import unstable-pkgs {
               system = final.system;
             };
-          })
-          (final: prev: {
             direnv = pkgs.stdenv.mkDerivation {
               name = "direnv-wrapped";
               src = prev.direnv;
@@ -48,6 +46,17 @@
                 cp -r share/man $out/share/man
               '';
             };
+            plex =
+              let plexpass-lock = lib.importJSON ./plexpass.json;
+              in pkgs.plex.override {
+                plexRaw = pkgs.plexRaw.overrideAttrs (x: {
+                  name = "plexmediaserver-${plexpass-lock.version}";
+                  src = pkgs.fetchurl {
+                    url = plexpass-lock.release.url;
+                    sha1 = plexpass-lock.sha1;
+                  };
+                });
+              };
           })
         ];
       };
