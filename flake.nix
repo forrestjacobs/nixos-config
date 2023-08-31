@@ -91,13 +91,6 @@
             ./hosts/freeman
           ];
         };
-        mariner = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            nixosInputs
-            ./hosts/mariner
-          ];
-        };
       };
       templates = {
         darwin = {
