@@ -23,31 +23,82 @@
     };
   };
 
-  outputs = { darwin, flake-utils, home-manager, nixpkgs, ... }@inputs:
-    let specialArgs.inputs = inputs;
-    in {
+  outputs =
+    { self
+    , nixpkgs
+    , unstable-pkgs
+    , darwin
+    , flake-utils
+    , home-manager
+    , NixOS-WSL
+    , vscode-server
+    }:
+    let
+      overlays = { config, lib, pkgs, ... }: {
+        nixpkgs.overlays = [
+          (final: prev: {
+            unstable = import unstable-pkgs {
+              system = final.system;
+            };
+          })
+          (final: prev: {
+            direnv = pkgs.stdenv.mkDerivation {
+              name = "direnv-wrapped";
+              src = prev.direnv;
+              # Copy everything except for /share/fish
+              # because that results in sourcing direnv twice
+              installPhase = ''
+                mkdir -p $out/share
+                cp -r bin $out/bin
+                cp -r share/man $out/share/man
+              '';
+            };
+          })
+        ];
+      };
+      nixosInputs = {
+        imports = [
+          overlays
+          home-manager.nixosModules.home-manager
+        ];
+        home-manager.users.forrest.imports = [
+          vscode-server.nixosModules.home
+        ];
+      };
+    in
+    {
       darwinConfigurations = {
         rutherford = darwin.lib.darwinSystem {
-          inherit specialArgs;
           system = "aarch64-darwin";
-          modules = [ ./hosts/rutherford ];
+          modules = [
+            overlays
+            home-manager.darwinModules.home-manager
+            ./hosts/rutherford
+          ];
         };
       };
       nixosConfigurations = {
         boimler = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
           system = "x86_64-linux";
-          modules = [ ./hosts/boimler ];
+          modules = [
+            nixosInputs
+            ./hosts/boimler
+          ];
         };
         freeman = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
           system = "x86_64-linux";
-          modules = [ ./hosts/freeman ];
+          modules = [
+            nixosInputs
+            NixOS-WSL.nixosModules.wsl
+            ./hosts/freeman
+          ];
         };
         mariner = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
           system = "aarch64-linux";
-          modules = [ ./hosts/mariner ];
+          modules = [
+            nixosInputs
+            ./hosts/mariner
+          ];
         };
       };
     } // flake-utils.lib.eachDefaultSystem (system: {

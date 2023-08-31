@@ -1,8 +1,6 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, ... }: {
 
   imports = [
-    ../shared.nix
-
     ./forrest.nix
     ./impermanence.nix
     ./update.nix

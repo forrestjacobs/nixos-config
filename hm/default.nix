@@ -1,4 +1,4 @@
-{ lib, pkgs, config, inputs, osConfig, ... }:
+{ lib, pkgs, config, osConfig, ... }:
 
 let
   root =

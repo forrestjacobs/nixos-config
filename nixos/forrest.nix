@@ -1,11 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 let agentCfg = config.services.forrest-ssh-agent;
 
 in
 {
-
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   options.services.forrest-ssh-agent = {
     enable = lib.mkEnableOption "ssh-agent for Forrest";
@@ -23,10 +21,7 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
       users.forrest = { pkgs, ... }: {
-        imports = [
-          ../hm
-          inputs.vscode-server.nixosModules.home
-        ];
+        imports = [ ../hm ];
         home.stateVersion = "22.11";
         services.vscode-server = {
           enable = true;

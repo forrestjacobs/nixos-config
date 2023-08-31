@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 # We're hard-coding the path here to avoid referencing /run/current-system.
 # /run/current-system doesn't exist immediately after boot, which is annoying
@@ -6,11 +6,6 @@
 let fish = "/nix/var/nix/profiles/system/sw/bin/fish";
 
 in {
-
-  imports = [
-    ../shared.nix
-    inputs.home-manager.darwinModules.home-manager
-  ];
 
   environment.userLaunchAgents."co.t19.fetch-dots.plist" = {
     text = ''
