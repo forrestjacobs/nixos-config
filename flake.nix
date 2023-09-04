@@ -9,25 +9,13 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    NixOS-WSL = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vscode-server = {
       url = "github:msteen/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , unstable-pkgs
-    , flake-utils
-    , home-manager
-    , NixOS-WSL
-    , vscode-server
-    }:
+  outputs = { self, nixpkgs, unstable-pkgs, flake-utils, home-manager, vscode-server }:
     let
       overlays = { config, lib, pkgs, ... }: {
         nixpkgs.overlays = [
@@ -82,14 +70,6 @@
         imports = [
           nixosInputs
           ./nixos
-        ];
-      };
-      nixosConfigurations.freeman = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixosInputs
-          NixOS-WSL.nixosModules.wsl
-          ./hosts/freeman
         ];
       };
       templates = {
