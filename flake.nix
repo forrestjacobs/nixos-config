@@ -4,10 +4,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     unstable-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -23,31 +19,87 @@
     };
   };
 
-  outputs = { darwin, flake-utils, home-manager, nixpkgs, ... }@inputs:
-    let specialArgs.inputs = inputs;
-    in {
-      darwinConfigurations = {
-        rutherford = darwin.lib.darwinSystem {
-          inherit specialArgs;
-          system = "aarch64-darwin";
-          modules = [ ./hosts/rutherford ];
-        };
+  outputs =
+    { self
+    , nixpkgs
+    , unstable-pkgs
+    , flake-utils
+    , home-manager
+    , NixOS-WSL
+    , vscode-server
+    }:
+    let
+      overlays = { config, lib, pkgs, ... }: {
+        nixpkgs.overlays = [
+          (final: prev: {
+            unstable = import unstable-pkgs {
+              system = final.system;
+            };
+            direnv = pkgs.stdenv.mkDerivation {
+              name = "direnv-wrapped";
+              src = prev.direnv;
+              # Copy everything except for /share/fish
+              # because that results in sourcing direnv twice
+              installPhase = ''
+                mkdir -p $out/share
+                cp -r bin $out/bin
+                cp -r share/man $out/share/man
+              '';
+            };
+            plex =
+              let plexpass-lock = lib.importJSON ./plexpass.json;
+              in prev.plex.override {
+                plexRaw = prev.plexRaw.overrideAttrs (x: {
+                  name = "plexmediaserver-${plexpass-lock.version}";
+                  src = pkgs.fetchurl {
+                    url = plexpass-lock.release.url;
+                    sha1 = plexpass-lock.sha1;
+                  };
+                });
+              };
+          })
+        ];
       };
-      nixosConfigurations = {
-        boimler = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [ ./hosts/boimler ];
+      nixosInputs = {
+        imports = [
+          overlays
+          home-manager.nixosModules.home-manager
+        ];
+        home-manager.users.forrest.imports = [
+          vscode-server.nixosModules.home
+        ];
+      };
+    in
+    {
+      darwinModules.default = { ... }: {
+        imports = [
+          overlays
+          home-manager.darwinModules.home-manager
+          ./darwin
+        ];
+      };
+      nixosModules.default = { ... }: {
+        imports = [
+          nixosInputs
+          ./nixos
+        ];
+      };
+      nixosConfigurations.freeman = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nixosInputs
+          NixOS-WSL.nixosModules.wsl
+          ./hosts/freeman
+        ];
+      };
+      templates = {
+        darwin = {
+          path = ./darwin/template;
+          description = "Base Mac configuration";
         };
-        freeman = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [ ./hosts/freeman ];
-        };
-        mariner = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "aarch64-linux";
-          modules = [ ./hosts/mariner ];
+        nixos = {
+          path = ./nixos/template;
+          description = "Base NixOS configuration";
         };
       };
     } // flake-utils.lib.eachDefaultSystem (system: {

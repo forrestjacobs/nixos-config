@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Run by Github Actions to update Plex Pass version in hosts/boimler/plexpass.json
+# Run by Github Actions to update Plex Pass version in plexpass.json
 # Thanks to https://gist.github.com/iamevn/11952b966c05ca799f4910e02c2ffe4a
 
 set -euo pipefail
@@ -17,7 +17,7 @@ versionInfo=$(curl -s -H "X-Plex-Token: ${PLEX_TOKEN}" "https://plex.tv/api/down
 
 hashed=$(nix-hash --to-base32 "$(echo "$versionInfo" | jq -r '.release.checksum')" --type sha1)
 
-echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > ./hosts/boimler/plexpass.json
+echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > ./plexpass.json
 
-git add ./hosts/boimler/plexpass.json
+git add ./plexpass.json
 git diff --staged --quiet || git commit -m "Updated plexpass.json"
