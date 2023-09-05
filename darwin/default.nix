@@ -38,6 +38,8 @@ in {
     useBabelfish = true;
   };
 
+  security.pam.enableSudoTouchIdAuth = true;
+
   services.nix-daemon.enable = true;
 
   users.users.forrest = {
