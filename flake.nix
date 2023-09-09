@@ -48,15 +48,6 @@
           })
         ];
       };
-      nixosInputs = {
-        imports = [
-          overlays
-          home-manager.nixosModules.home-manager
-        ];
-        home-manager.users.forrest.imports = [
-          vscode-server.nixosModules.home
-        ];
-      };
     in
     {
       darwinModules.default = { ... }: {
@@ -68,8 +59,12 @@
       };
       nixosModules.default = { ... }: {
         imports = [
-          nixosInputs
+          overlays
+          home-manager.nixosModules.home-manager
           ./nixos
+        ];
+        home-manager.users.forrest.imports = [
+          vscode-server.nixosModules.home
         ];
       };
       templates = {
