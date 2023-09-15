@@ -9,13 +9,9 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vscode-server = {
-      url = "github:msteen/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, unstable-pkgs, flake-utils, home-manager, vscode-server }:
+  outputs = { self, nixpkgs, unstable-pkgs, flake-utils, home-manager }:
     let
       common = { config, lib, pkgs, ... }: {
         nixpkgs.overlays = [
@@ -42,9 +38,6 @@
           ./common
           home-manager.nixosModules.home-manager
           ./nixos
-        ];
-        home-manager.users.forrest.imports = [
-          vscode-server.nixosModules.home
         ];
       };
       templates = {
