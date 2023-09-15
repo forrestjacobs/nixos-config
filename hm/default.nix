@@ -56,6 +56,7 @@ in
     pkgs.gitui
     pkgs.htop
     pkgs.jq
+    pkgs.lazygit
     pkgs.lsof
     pkgs.mosh
     pkgs.ncdu
