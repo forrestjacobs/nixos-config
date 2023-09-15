@@ -23,10 +23,6 @@ in
       users.forrest = { pkgs, ... }: {
         imports = [ ../hm ];
         home.stateVersion = "22.11";
-        services.vscode-server = {
-          enable = true;
-          nodejsPackage = pkgs.nodejs-16_x;
-        };
         systemd.user.services.ssh-agent = lib.mkIf agentCfg.enable {
           Unit.Description = "SSH key agent";
           Install.WantedBy = [ "default.target" ];

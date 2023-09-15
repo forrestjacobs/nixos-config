@@ -56,6 +56,7 @@ in
     pkgs.gitui
     pkgs.htop
     pkgs.jq
+    pkgs.lazygit
     pkgs.lsof
     pkgs.mosh
     pkgs.ncdu
@@ -93,6 +94,7 @@ in
         if pkgs.stdenv.isDarwin
         then "darwin-rebuild switch --flake ~/.config/darwin"
         else "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --recreate-lock-file";
       se = "sudo -e";
     };
   };
