@@ -17,7 +17,7 @@ versionInfo=$(curl -s -H "X-Plex-Token: ${PLEX_TOKEN}" "https://plex.tv/api/down
 
 hashed=$(nix-hash --to-base32 "$(echo "$versionInfo" | jq -r '.release.checksum')" --type sha1)
 
-echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > ./plexpass.json
+echo "$versionInfo" | jq '.sha1 = "'"$hashed"'"' > ./common/plexpass.json
 
-git add ./plexpass.json
+git add ./common/plexpass.json
 git diff --staged --quiet || git commit -m "Updated plexpass.json"
