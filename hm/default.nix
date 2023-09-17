@@ -57,6 +57,7 @@ in
     pkgs.htop
     pkgs.jq
     pkgs.lazygit
+    pkgs.lldb
     pkgs.lsof
     pkgs.mosh
     pkgs.ncdu
@@ -68,6 +69,7 @@ in
     pkgs.p7zip
     pkgs.patchutils
     pkgs.rnix-lsp # nix lsp
+    pkgs.rust-analyzer
     pkgs.tmux
     pkgs.unzip
   ];
