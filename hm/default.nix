@@ -90,15 +90,17 @@ in
         body = ''ssh -t "$target" term'';
       };
     };
-    shellAbbrs = {
-      garbage = "sudo nix-collect-garbage --delete-older-than 14d";
-      rebuild =
+    shellAbbrs =
+      let rebuild =
         if pkgs.stdenv.isDarwin
         then "darwin-rebuild switch --flake ~/.config/darwin"
         else "sudo nixos-rebuild switch";
-      update = "sudo nixos-rebuild switch --recreate-lock-file";
-      se = "sudo -e";
-    };
+      in {
+        garbage = "sudo nix-collect-garbage --delete-older-than 14d";
+        rebuild = rebuild;
+        se = "sudo -e";
+        update = "${rebuild} --recreate-lock-file";
+      };
   };
 
   programs.git = {
