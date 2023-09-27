@@ -9,14 +9,12 @@
   };
 
   outputs = { self, dots, darwin }: {
-    darwinConfigurations = {
-      "[hostname]" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          dots.darwinModules.default
-          { networking.hostName = "[hostname]"; }
-        ];
-      };
+    darwinConfigurations."[hostname]" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        dots.darwinModules.default
+        { networking.hostName = "[hostname]"; }
+      ];
     };
   };
 
