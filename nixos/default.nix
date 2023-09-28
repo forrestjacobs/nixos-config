@@ -57,6 +57,12 @@
 
   system.stateVersion = lib.mkDefault "22.05";
 
+  system.autoUpgrade = {
+    allowReboot = true;
+    flags = [ "--recreate-lock-file" ];
+    flake = "/etc/nixos";
+  };
+
   time.timeZone = "America/New_York";
 
   users.defaultUserShell = pkgs.fish;
