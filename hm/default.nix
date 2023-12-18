@@ -43,7 +43,7 @@ let
 in
 {
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.11";
 
   home.packages = [
     home-bin
@@ -91,11 +91,13 @@ in
       };
     };
     shellAbbrs =
-      let rebuild =
-        if pkgs.stdenv.isDarwin
-        then "darwin-rebuild switch --flake ~/.config/darwin"
-        else "sudo nixos-rebuild switch";
-      in {
+      let
+        rebuild =
+          if pkgs.stdenv.isDarwin
+          then "darwin-rebuild switch --flake ~/.config/darwin"
+          else "sudo nixos-rebuild switch";
+      in
+      {
         garbage = "sudo nix-collect-garbage --delete-older-than 14d";
         rebuild = rebuild;
         se = "sudo -e";

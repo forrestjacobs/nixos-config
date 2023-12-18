@@ -56,7 +56,7 @@
     ports = [ 36522 ];
   };
 
-  system.stateVersion = lib.mkDefault "22.05";
+  system.stateVersion = lib.mkDefault "23.11";
 
   system.autoUpgrade = {
     allowReboot = true;
