@@ -10,7 +10,7 @@
         ./hardware-configuration.nix
         {
           networking.hostName = "[hostname]";
-          users.users.forrest.passwordFile = "/etc/persist/forrest-password";
+          users.users.forrest.hashedPasswordFile = "/etc/persist/forrest-password";
         }
       ];
     };

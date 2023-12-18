@@ -129,7 +129,7 @@ in
 
   programs.helix = {
     enable = true;
-    package = pkgs.unstable.helix;
+    package = pkgs.helix;
     settings = {
       theme = "base16_transparent";
       editor = {

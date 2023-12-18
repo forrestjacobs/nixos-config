@@ -12,13 +12,10 @@
   boot.loader.systemd-boot.netbootxyz.enable = true;
 
   environment = {
-    defaultPackages = lib.mkForce [ ];
     shellAliases = lib.mkForce { };
     systemPackages = [
       pkgs.git
-      pkgs.unstable.helix
-      pkgs.nano
-      pkgs.wget # required by VS Code WSL plugin -- who knew??
+      pkgs.helix
     ];
   };
 
