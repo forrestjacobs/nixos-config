@@ -50,7 +50,7 @@ in
     pkgs.bat
     pkgs.darkhttpd
     pkgs.delta
-    pkgs.exa
+    pkgs.eza
     pkgs.fd
     pkgs.fishPlugins.hydro
     pkgs.gitui
@@ -83,8 +83,8 @@ in
 
     functions = {
       l = "bat -p $argv";
-      ll = "exa -aagl $argv";
-      lll = "exa -glT --level=2 $argv";
+      ll = "eza -aagl $argv";
+      lll = "eza -glT --level=2 $argv";
       remote = {
         argumentNames = [ "target" ];
         body = ''ssh -t "$target" term'';

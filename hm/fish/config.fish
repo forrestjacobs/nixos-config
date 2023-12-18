@@ -35,7 +35,7 @@ end
 set -xg BAT_STYLE numbers,changes
 set -xg BAT_THEME ansi
 
-# exa
+# eza
 set -xg TIME_STYLE iso
 
 # fish
