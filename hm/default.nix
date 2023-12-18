@@ -43,14 +43,14 @@ let
 in
 {
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.11";
 
   home.packages = [
     home-bin
     pkgs.bat
     pkgs.darkhttpd
     pkgs.delta
-    pkgs.exa
+    pkgs.eza
     pkgs.fd
     pkgs.fishPlugins.hydro
     pkgs.gitui
@@ -83,19 +83,21 @@ in
 
     functions = {
       l = "bat -p $argv";
-      ll = "exa -aagl $argv";
-      lll = "exa -glT --level=2 $argv";
+      ll = "eza -aagl $argv";
+      lll = "eza -glT --level=2 $argv";
       remote = {
         argumentNames = [ "target" ];
         body = ''ssh -t "$target" term'';
       };
     };
     shellAbbrs =
-      let rebuild =
-        if pkgs.stdenv.isDarwin
-        then "darwin-rebuild switch --flake ~/.config/darwin"
-        else "sudo nixos-rebuild switch";
-      in {
+      let
+        rebuild =
+          if pkgs.stdenv.isDarwin
+          then "darwin-rebuild switch --flake ~/.config/darwin"
+          else "sudo nixos-rebuild switch";
+      in
+      {
         garbage = "sudo nix-collect-garbage --delete-older-than 14d";
         rebuild = rebuild;
         se = "sudo -e";
@@ -129,7 +131,7 @@ in
 
   programs.helix = {
     enable = true;
-    package = pkgs.unstable.helix;
+    package = pkgs.helix;
     settings = {
       theme = "base16_transparent";
       editor = {

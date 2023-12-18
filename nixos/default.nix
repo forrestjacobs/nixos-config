@@ -12,13 +12,10 @@
   boot.loader.systemd-boot.netbootxyz.enable = true;
 
   environment = {
-    defaultPackages = lib.mkForce [ ];
     shellAliases = lib.mkForce { };
     systemPackages = [
       pkgs.git
-      pkgs.unstable.helix
-      pkgs.nano
-      pkgs.wget # required by VS Code WSL plugin -- who knew??
+      pkgs.helix
     ];
   };
 
@@ -59,7 +56,7 @@
     ports = [ 36522 ];
   };
 
-  system.stateVersion = lib.mkDefault "22.05";
+  system.stateVersion = lib.mkDefault "23.11";
 
   system.autoUpgrade = {
     allowReboot = true;
