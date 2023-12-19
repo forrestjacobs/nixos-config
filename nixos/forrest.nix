@@ -48,17 +48,6 @@ in
         builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../keys/${config.networking.hostName});
     };
 
-    services.syncthing = {
-      configDir = "/home/forrest/.config/syncthing";
-      user = "forrest";
-      group = "users";
-    };
-
-    networking.firewall = lib.mkIf config.services.syncthing.enable {
-      allowedTCPPorts = [ 22000 ];
-      allowedUDPPorts = [ 21027 22000 ];
-    };
-
   };
 
 }
