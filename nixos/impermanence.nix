@@ -26,7 +26,6 @@ in
         type = lib.types.listOf lib.types.str;
         default = [
           "etc/nixos"
-          "etc/persist"
           "home"
           "nix"
           "var/lib"
@@ -41,10 +40,6 @@ in
 
     environment.systemPackages = [
       pkgs.btrfs-progs
-    ];
-
-    services.openssh.hostKeys = [
-      { type = "ed25519"; path = "/etc/persist/ssh/ssh_host_ed25519_key"; }
     ];
 
     fileSystems = {
