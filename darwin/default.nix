@@ -9,6 +9,10 @@ in {
 
   homebrew = {
     enable = true;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+    };
     taps = [
       "homebrew/cask-fonts"
     ];
