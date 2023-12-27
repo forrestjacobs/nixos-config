@@ -17,6 +17,7 @@
           (final: prev: {
             unstable = import unstable-pkgs {
               system = final.system;
+              config.allowUnfree = true;
             };
           })
         ];
