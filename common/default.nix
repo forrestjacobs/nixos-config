@@ -2,6 +2,5 @@
   nixpkgs.overlays = [
     (import ./direnv.nix)
     (import ./gencolor.nix)
-    (import ./plex.nix)
   ];
 }
