@@ -2,6 +2,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -9,15 +13,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, home-manager }:
-    {
-      darwinModules.default = { ... }: {
+  outputs = { self, nixpkgs, darwin, flake-utils, home-manager }:
+    let
+      darwinModule = { ... }: {
         imports = [
           ./common
           home-manager.darwinModules.home-manager
           ./darwin
         ];
       };
+    in
+    {
+      darwinConfigurations.rutherford = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          darwinModule
+          ({ pkgs, ... }: {
+            networking.hostName = "rutherford";
+            users.users.forrest.packages = [
+              pkgs.rclone
+            ];
+          })
+        ];
+      };
+      darwinModules.default = darwinModule;
       nixosModules.default = { ... }: {
         imports = [
           ./common
