@@ -1,16 +1,8 @@
 { lib, pkgs, config, osConfig, ... }:
 
 let
-  home-bin = (pkgs.stdenv.mkDerivation {
-    name = "home-bin";
-    src = ./bin;
-    installPhase = ''
-      mkdir -p $out/bin
-      cp * $out/bin
-    '';
-  });
   hostName = osConfig.networking.hostName;
-  genHostColor = pkgs.gencolor hostName;
+  genHostColor = lib.dots.gencolor hostName;
 
 in
 {
@@ -18,7 +10,7 @@ in
   home.stateVersion = "23.11";
 
   home.packages = [
-    home-bin
+    pkgs.dots.home-bin
     pkgs.bat
     pkgs.darkhttpd
     pkgs.delta

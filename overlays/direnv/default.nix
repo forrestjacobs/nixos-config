@@ -1,3 +1,4 @@
+{ channels, ... }:
 final: prev: {
   direnv = final.stdenv.mkDerivation {
     name = "direnv-wrapped";

@@ -1,6 +1,5 @@
-final: prev:
-let lib = final.lib;
-in {
+{ lib, ... }:
+{
   gencolor = key: y:
     let
       hexToInt = digit: lib.toInt (

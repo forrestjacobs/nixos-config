@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 # We're hard-coding the path here to avoid referencing /run/current-system.
 # /run/current-system doesn't exist immediately after boot, which is annoying
@@ -25,9 +25,6 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.forrest = { pkgs, ... }: {
-      imports = [ ../hm ];
-    };
   };
 
   nix.settings = {

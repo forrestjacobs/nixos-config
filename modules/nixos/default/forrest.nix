@@ -21,7 +21,6 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
       users.forrest = { pkgs, ... }: {
-        imports = [ ../hm ];
         home.stateVersion = "23.11";
         systemd.user.services.ssh-agent = lib.mkIf agentCfg.enable {
           Unit.Description = "SSH key agent";
@@ -45,7 +44,7 @@ in
       description = "Forrest Jacobs";
       extraGroups = lib.mkDefault [ "wheel" ];
       openssh.authorizedKeys.keys =
-        builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../keys/${config.networking.hostName});
+        builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../../../keys/${config.networking.hostName});
     };
 
   };
