@@ -21,7 +21,6 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
       users.forrest = { pkgs, ... }: {
-        home.stateVersion = "23.11";
         systemd.user.services.ssh-agent = lib.mkIf agentCfg.enable {
           Unit.Description = "SSH key agent";
           Install.WantedBy = [ "default.target" ];
