@@ -11,6 +11,7 @@ in
 
   home.packages = [
     pkgs.dots.home-bin
+    pkgs.agenix
     pkgs.bat
     pkgs.darkhttpd
     pkgs.delta

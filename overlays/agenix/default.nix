@@ -1,0 +1,1 @@
+{ agenix, ... }: agenix.overlays.default
