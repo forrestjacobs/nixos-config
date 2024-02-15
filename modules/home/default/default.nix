@@ -108,6 +108,11 @@ in
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    options = [ "--cmd" "cd" ];
+  };
+
   xdg.configFile = {
     "fish/conf.d/50-main.fish".source = ./fish/config.fish;
     "fish/conf.d/60-generated.fish".text = ''
