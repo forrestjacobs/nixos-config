@@ -12,7 +12,6 @@ in
   home.stateVersion = "23.11";
 
   home.packages = [
-    pkgs.dots.home-bin
     pkgs.agenix
     pkgs.bat
     pkgs.darkhttpd
