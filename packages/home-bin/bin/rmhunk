@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Discards modified hunks matching passed in regex
-
-git diff -U1 | grepdiff "$1" --output-matching=hunk | git apply -R

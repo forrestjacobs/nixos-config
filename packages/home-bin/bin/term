@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-exec tmux -u new -A -s main
