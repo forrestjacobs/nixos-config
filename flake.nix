@@ -5,10 +5,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dotfiles.url = "github:forrestjacobs/dotfiles";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,15 +24,9 @@
       formatter = channels.nixpkgs.nixpkgs-fmt;
     };
   }) // {
-    templates = {
-      darwin = {
-        path = ./templates/darwin;
-        description = "Base Mac configuration";
-      };
-      nixos = {
-        path = ./templates/nixos;
-        description = "Base NixOS configuration";
-      };
+    templates.nixos = {
+      path = ./templates/nixos;
+      description = "Base NixOS configuration";
     };
   };
 }

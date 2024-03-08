@@ -1,4 +1,4 @@
-{ lib, pkgs, config, osConfig, ... }:
+{ lib, pkgs, config, inputs, osConfig, ... }:
 
 let
   hostName = osConfig.networking.hostName;
@@ -6,6 +6,8 @@ let
 
 in
 {
+
+  imports = [ inputs.dotfiles.homeModules.default ];
 
   home.stateVersion = "23.11";
 
@@ -41,86 +43,21 @@ in
 
   programs.direnv.enable = true;
 
-  programs.fzf.enable = true;
-
   programs.fish = {
     enable = true;
-
-    functions = {
-      l = "bat -p $argv";
-      ll = "eza -aagl $argv";
-      lll = "eza -glT --level=2 $argv";
-      remote = {
-        argumentNames = [ "target" ];
-        body = ''ssh -t "$target" term'';
-      };
+    shellAbbrs = {
+      garbage = "sudo nix-collect-garbage --delete-older-than 14d";
+      rebuild = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --recreate-lock-file";
     };
-    shellAbbrs =
-      let
-        rebuild =
-          if pkgs.stdenv.isDarwin
-          then "darwin-rebuild switch --flake ~/.config/darwin"
-          else "sudo nixos-rebuild switch";
-      in
-      {
-        garbage = "sudo nix-collect-garbage --delete-older-than 14d";
-        rebuild = rebuild;
-        se = "sudo -e";
-        update = "${rebuild} --recreate-lock-file";
-      };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Forrest Jacobs";
-    userEmail = lib.mkDefault "forrestjacobs@gmail.com";
-    extraConfig = {
-      diff.colorMoved = "default";
-      init.defaultBranch = "main";
-      merge.conflictstyle = "diff3";
-      pull.ff = "only";
-    };
-    ignores = [
-      ".DS_Store"
-      "*.forrest"
-      "*.forrest.*"
-    ];
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        line-numbers = true;
-      };
-    };
-  };
-
-  programs.helix = {
-    enable = true;
-    package = pkgs.helix;
-    settings = {
-      theme = "base16_transparent";
-      editor = {
-        color-modes = true;
-        cursor-shape.insert = "bar";
-        indent-guides.render = true;
-        line-number = "relative";
-      };
-    };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    options = [ "--cmd" "cd" ];
   };
 
   xdg.configFile = {
-    "fish/conf.d/50-main.fish".source = ./fish/config.fish;
     "fish/conf.d/60-generated.fish".text = ''
       set -xg hydro_color_prompt ${genHostColor 160}
     '';
-    "kitty/kitty.conf".source = ./kitty/kitty.conf;
     "tmux/tmux.conf".text = ''
-      source ${./tmux/tmux.conf}
+      source ${./tmux.conf}
       set -g status-right "#[bg=#${genHostColor 64}] ${hostName} #[bg=default] "
     '';
   };
