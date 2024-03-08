@@ -47,11 +47,11 @@
     },
     "dotfiles": {
       "locked": {
-        "lastModified": 1709852098,
-        "narHash": "sha256-+yXTbH5C0VDlkPDSml9VoE7ydZalcDOcnjYaTsf0F4k=",
+        "lastModified": 1709869716,
+        "narHash": "sha256-U5rPV1xCn9davSz0/zGKkST64DM6G8EAMVUNBBz0O9E=",
         "owner": "forrestjacobs",
         "repo": "dotfiles",
-        "rev": "4c33c0c76e57b9363f837abd395164c282f033e9",
+        "rev": "492ae38d190be6532d23a6a71340d017ee00c1af",
         "type": "github"
       },
       "original": {
