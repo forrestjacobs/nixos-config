@@ -14,12 +14,8 @@ in
   home.packages = [
     pkgs.dots.home-bin
     pkgs.agenix
-    pkgs.bat
     pkgs.darkhttpd
-    pkgs.delta
-    pkgs.eza
     pkgs.fd
-    pkgs.fishPlugins.hydro
     pkgs.gitui
     pkgs.htop
     pkgs.jq
@@ -34,8 +30,6 @@ in
     pkgs.nodePackages.bash-language-server # bash lsp
     pkgs.openssh
     pkgs.p7zip
-    pkgs.patchutils
-    pkgs.rust-analyzer
     pkgs.tmux
     pkgs.unzip
   ];
