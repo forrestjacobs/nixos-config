@@ -35,7 +35,6 @@ in
     pkgs.openssh
     pkgs.p7zip
     pkgs.patchutils
-    pkgs.rnix-lsp # nix lsp
     pkgs.rust-analyzer
     pkgs.tmux
     pkgs.unzip
