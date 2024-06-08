@@ -42,8 +42,8 @@ in
       isNormalUser = true;
       description = "Forrest Jacobs";
       extraGroups = lib.mkDefault [ "wheel" ];
-      openssh.authorizedKeys.keys =
-        builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../../../keys/${config.networking.hostName});
+      # openssh.authorizedKeys.keys =
+      #   builtins.map builtins.readFile (lib.filesystem.listFilesRecursive ../../../keys/${config.networking.hostName});
     };
 
   };
