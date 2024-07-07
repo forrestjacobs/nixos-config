@@ -13,7 +13,7 @@ jobs:
       - id: update
         uses: DeterminateSystems/update-flake-lock@v23
       - name: Merge
-        run: gh pr merge "$PR_NUM" --rebase
+        run: gh pr merge --auto "$PR_NUM" --rebase
         env:
           PR_NUM: ${{ steps.update.outputs.pull-request-number }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
